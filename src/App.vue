@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const route = useRoute()
+
+// Nascondi la navbar sulla homepage
+const showNavbar = computed(() => route.name !== 'home')
 </script>
 
 <template>
-  <header class="bg-base-200 shadow-md">
+  <header v-if="showNavbar" class="bg-base-200 shadow-md">
     <div class="navbar container mx-auto">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Form Magistrale</a>
+        <RouterLink to="/" class="btn btn-ghost normal-case text-xl">Rappresentanti CS</RouterLink>
       </div>
       <div class="flex-none">
         <nav class="menu menu-horizontal px-1">
           <RouterLink to="/" class="btn btn-ghost">Home</RouterLink>
-          <RouterLink to="/survey" class="btn btn-ghost">Questionario</RouterLink>
+          <RouterLink to="/questionario" class="btn btn-ghost">Questionario</RouterLink>
         </nav>
       </div>
       <!-- Theme Light-Dark controller -->
@@ -44,7 +50,7 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
   </header>
 
-  <main class="container mx-auto md:p-4">
+  <main :class="showNavbar ? 'container mx-auto md:p-4' : ''">
     <RouterView />
   </main>
 </template>

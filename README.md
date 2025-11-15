@@ -1,18 +1,21 @@
-# CS LM Questionnaire
+# Rappresentanti
 
-This template should help get you started developing with Vue 3 in Vite.
+Piattaforma web dei rappresentanti del corso di laurea magistrale in Computer Science dell'Università di Bologna.
 
-## Recommended IDE Setup
+## Funzionalità
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Homepage moderna** con comunicazioni e informazioni sui rappresentanti
+- **Sistema di comunicazioni** con filtri per categoria e priorità
+- **Questionario studenti** per la valutazione dei corsi
+- **Contatti rappresentanti** con email e Telegram
+- **Design responsive** ottimizzato per mobile e desktop
 
-## Type Support for `.vue` Imports in TS
+## Tecnologie
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Vue 3 + TypeScript
+- Vite per il build
+- Tailwind CSS + DaisyUI per lo styling
+- Vue Router per la navigazione
 
 ## Project Setup
 
