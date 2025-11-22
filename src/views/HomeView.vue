@@ -69,7 +69,7 @@ const scrollToSection = (sectionId: string) => {
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
     </div>
 
-    <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+    <div class="relative z-10 text-center text-white px-4 max-w-6xl min-h-screen mx-auto">
       <!-- Logo -->
       <div class="mb-8">
         <img 
@@ -110,7 +110,7 @@ const scrollToSection = (sectionId: string) => {
       </div>
 
       <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
         <Icon icon="heroicons:arrow-down" class="h-6 w-6 text-white/70" />
       </div>
     </div>
