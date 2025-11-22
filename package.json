@@ -8,12 +8,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --build",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "fetch:telegram": "node scripts/fetchTelegramPublic.js"
   },
   "dependencies": {
     "@iconify/vue": "^5.0.0",
     "@tailwindcss/vite": "^4.0.15",
     "autoprefixer": "^10.4.21",
+    "node-fetch": "^3.3.1",
     "pinia": "^3.0.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.15",
@@ -25,9 +27,12 @@
     "@types/node": "^22.13.9",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "cheerio": "^1.1.2",
     "daisyui": "^5.0.43",
+    "dotenv": "^16.4.5",
     "npm-run-all2": "^7.0.2",
     "prettier": "3.5.3",
+    "telegram": "^2.19.9",
     "typescript": "~5.8.0",
     "vite": "^6.2.1",
     "vite-plugin-vue-devtools": "^7.7.2",

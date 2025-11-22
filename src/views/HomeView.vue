@@ -145,7 +145,7 @@ onMounted(async () => {
     <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
       <!-- Logo -->
       <div class="mb-8">
-        <img src="/public/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica"
+        <img src="/src/assets/logo/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica"
           class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg">
       </div>
 
@@ -313,7 +313,7 @@ onMounted(async () => {
       <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <!-- Logo & Info -->
         <div class="flex items-center gap-4">
-          <img src="/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica" class="h-12">
+          <img src="/src/assets/logo/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica" class="h-12">
           <div>
             <h3 class="text-lg">Rappresentanti Informatica</h3>
             <p class="text-sm text-base-content/60">Università di Bologna</p>
