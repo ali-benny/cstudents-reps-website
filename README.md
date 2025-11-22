@@ -1,4 +1,4 @@
-# Rappresentanti
+# CStudents Reps Website
 
 Piattaforma web dei rappresentanti del corso di laurea magistrale in Computer Science dell'Università di Bologna.
 
@@ -23,6 +23,13 @@ Piattaforma web dei rappresentanti del corso di laurea magistrale in Computer Sc
 npm install
 ```
 
+### Scraping Telegram Comunications
+Con questo comando si aggiornano le comunicazioni prese dal canale Telegram dei rappresentanti, salvandole nel file `public/comunications.json`.
+
+```sh
+npm run fetch:telegram
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
@@ -35,7 +42,9 @@ npm run dev
 npm run build
 ```
 
-# How to
+---
+
+# How to Questionario
 
 ## Come metto un campo required?
 
@@ -54,4 +63,13 @@ Vedi la documentazione di daisyui per ulteriori l'uso nei specifici componenti: 
   <option value="1">Opzione 1</option>
   <option value="2">Opzione 2</option>
 </select>
+```
+
+## Componenti personalizzati
+### Star Rating
+Uso del componente `StarRating` per valutare con stelle (1-5):
+Posso aggiungerci `v-model` per legarlo ad una variabile e `class` per personalizzarne lo stile.
+
+```html
+<StarRating v-model="rating" />
 ```
