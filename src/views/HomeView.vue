@@ -1,17 +1,65 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+
+interface Communication {
+  id: number | string
+  title: string
+  content: string
+  date: string
+  author: string
+  category: string
+  priority: string
+  cta?: { text: string; link: string } | null
+}
+
+interface Representative {
+  id: number | string
+  name: string
+  email: string
+  telegram: string
+  role?: string
+  year?: string
+  curriculum?: string
+}
 import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
 
-// Dati reattivi
-const communications = ref([])
-const representatives = ref([])
+const communications = ref<Communication[]>([])
+const representatives = ref<Representative[]>([
+  {
+    id: 1,
+    name: 'Alice Benatti',
+    email: 'alice.benatti4@studio.unibo.it',
+    telegram: '@alii_benatti',
+    role: 'Rappresentante',
+    year: '1°',
+    curriculum: 'Magistrale'
+  },
+  {
+    id: 2,
+    name: 'William Brusa',
+    email: 'william.brusa@studio.unibo.it',
+    telegram: '@OkGuh',
+    role: 'Rappresentante',
+    year: '2°',
+    curriculum: 'Triennale'
+  },
+  {
+    id: 3,
+    name: 'Rohan Regmi',
+    email: 'rohan.regmi@studio.unibo.it',
+    telegram: '@dark24x7',
+    role: 'Rappresentante',
+    year: '2°',
+    curriculum: 'Triennale'
+  }
+])
 const selectedCategory = ref('all')
 
 // Categorie per il filtro
 const categories = [
   { id: 'all', name: 'Tutte', icon: 'heroicons:clipboard-document-list' },
-  { id: 'questionario', name: 'Questionari', icon: 'heroicons:document-text' },
+  // { id: 'questionario', name: 'Questionari', icon: 'heroicons:document-text' },
   { id: 'didattica', name: 'Didattica', icon: 'heroicons:academic-cap' },
   { id: 'opportunita', name: 'Opportunità', icon: 'heroicons:rocket-launch' },
   { id: 'eventi', name: 'Eventi', icon: 'heroicons:calendar-days' }
@@ -28,10 +76,10 @@ const filteredCommunications = computed(() => {
 // Funzioni utili
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
-  return date.toLocaleDateString('it-IT', { 
-    day: 'numeric', 
-    month: 'long', 
-    year: 'numeric' 
+  return date.toLocaleDateString('it-IT', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
   })
 }
 
@@ -56,6 +104,29 @@ const scrollToSection = (sectionId: string) => {
     element.scrollIntoView({ behavior: 'smooth' })
   }
 }
+
+// Load communications from generated JSON
+onMounted(async () => {
+  try {
+    const res = await fetch('/communications.json')
+    if (res.ok) {
+      const data = await res.json()
+      // Basic validation and fallback mapping
+      communications.value = Array.isArray(data) ? data.map((m: any) => ({
+        id: m.id,
+        title: m.title || (m.content ? String(m.content).slice(0, 80) + '…' : 'Senza titolo'),
+        content: m.content || '',
+        date: m.date || new Date().toISOString(),
+        author: m.author || 'Telegram',
+        category: m.category || 'didattica',
+        priority: m.priority || 'low',
+        cta: m.cta || null
+      })) : []
+    }
+  } catch (e) {
+    console.error('Errore caricamento communications.json', e)
+  }
+})
 </script>
 
 <template>
@@ -63,24 +134,23 @@ const scrollToSection = (sectionId: string) => {
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Gradient Background -->
     <div class="absolute inset-0 bg-gradient-to-br from-[#0097b2] to-[#7ed957]"></div>
-    
+
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
-      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+      <div class="absolute inset-0"
+        style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;">
+      </div>
     </div>
 
-    <div class="relative z-10 text-center text-white px-4 max-w-6xl min-h-screen mx-auto">
+    <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
       <!-- Logo -->
       <div class="mb-8">
-        <img 
-          src="/public/logo-dark-trasp.png" 
-          alt="Logo Rappresentanti Informatica" 
-          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg"
-        >
+        <img src="/public/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica"
+          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg">
       </div>
 
       <!-- Title -->
-      <h1 class="font-bold text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight" style="font-family: 'League Spartan', sans-serif;">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight">
         Rappresentanti<br>Informatica
       </h1>
 
@@ -92,27 +162,23 @@ const scrollToSection = (sectionId: string) => {
 
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <RouterLink 
-          to="/questionario"
-          class="btn btn-lg bg-white text-[#0097b2] hover:bg-white/90 border-none shadow-lg font-semibold px-8 transform hover:scale-105 transition-all duration-200"
-        >
+        <!-- <RouterLink to="/questionario"
+          class="btn btn-lg bg-white text-[#0097b2] hover:bg-white/90 border-none shadow-lg font-semibold px-8 transform hover:scale-105 transition-all duration-200">
           <Icon icon="heroicons:document-text" class="h-6 w-6 mr-2" />
           Compila il Questionario
-        </RouterLink>
-        
-        <button 
-          @click="scrollToSection('communications')"
-          class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-[#0097b2] font-semibold px-8 transform hover:scale-105 transition-all duration-200"
-        >
-          <Icon icon="heroicons:arrow-down" class="h-6 w-6 mr-2" />
+        </RouterLink> -->
+
+        <button @click="scrollToSection('communications')"
+          class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-[#0097b2] font-semibold px-8 transform hover:scale-105 transition-all duration-200">
+          <Icon icon="heroicons:arrow-down" />
           Scopri le News
         </button>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <Icon icon="heroicons:arrow-down" class="h-6 w-6 text-white/70" />
-      </div>
+    </div>
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce text-3xl">
+      <Icon icon="heroicons:arrow-down" />
     </div>
   </section>
 
@@ -121,7 +187,7 @@ const scrollToSection = (sectionId: string) => {
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-base-content flex items-center justify-center gap-3" style="font-family: 'League Spartan', sans-serif;">
+        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
           <Icon icon="heroicons:megaphone" class="h-12 w-12" />
           Comunicazioni
         </h2>
@@ -132,17 +198,12 @@ const scrollToSection = (sectionId: string) => {
 
       <!-- Category Filter -->
       <div class="flex flex-wrap justify-center gap-3 mb-12">
-        <button
-          v-for="category in categories"
-          :key="category.id"
-          @click="selectedCategory = category.id"
-          :class="[
-            'btn btn-sm transition-all duration-200',
-            selectedCategory === category.id 
-              ? 'btn-primary' 
-              : 'btn-outline btn-primary hover:btn-primary'
-          ]"
-        >
+        <button v-for="category in categories" :key="category.id" @click="selectedCategory = category.id" :class="[
+          'btn btn-sm transition-all duration-200',
+          selectedCategory === category.id
+            ? 'btn-primary'
+            : 'btn-outline btn-primary hover:btn-primary'
+        ]">
           <Icon :icon="category.icon" class="h-4 w-4 mr-2" />
           {{ category.name }}
         </button>
@@ -150,39 +211,33 @@ const scrollToSection = (sectionId: string) => {
 
       <!-- Communications Grid -->
       <div class="grid gap-6 md:gap-8">
-        <div
-          v-for="comm in filteredCommunications"
-          :key="comm.id"
-          :class="[
-            'card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1',
-            getPriorityClass(comm.priority)
-          ]"
-        >
+        <div v-for="comm in filteredCommunications" :key="comm.id" :class="[
+          'card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1',
+          getPriorityClass(comm.priority)
+        ]">
           <div class="card-body">
             <!-- Header -->
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
               <div class="flex items-start gap-3">
                 <Icon :icon="getCategoryIcon(comm.category)" class="h-6 w-6 text-primary" />
                 <div>
-                  <h3 class="card-title text-lg md:text-xl mb-2 text-base-content">
-                    {{ comm.title }}
-                  </h3>
+                  <div class="card-title text-lg md:text-xl mb-2 text-base-content" v-html="comm.title">
+                  </div>
                   <div class="flex items-center gap-2 text-sm text-base-content/60">
                     <Icon icon="heroicons:calendar-days" class="h-4 w-4" />
                     {{ formatDate(comm.date) }}
                   </div>
                 </div>
               </div>
-              
+
               <div class="badge badge-primary badge-outline">
                 {{ comm.category }}
               </div>
             </div>
 
             <!-- Content -->
-            <p class="text-base-content/80 leading-relaxed mb-4">
-              {{ comm.content }}
-            </p>
+            <div class="text-base-content/80 leading-relaxed mb-4" v-html="comm.content"></div>
+
 
             <!-- Footer -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -190,12 +245,9 @@ const scrollToSection = (sectionId: string) => {
                 <Icon icon="heroicons:pencil-square" class="h-4 w-4" />
                 {{ comm.author }}
               </div>
-              
+
               <div v-if="comm.cta" class="flex justify-end">
-                <RouterLink 
-                  :to="comm.cta.link"
-                  class="btn btn-primary btn-sm"
-                >
+                <RouterLink :to="comm.cta.link" class="btn btn-primary btn-sm">
                   {{ comm.cta.text }}
                   <Icon icon="heroicons:arrow-right" class="h-4 w-4 ml-2" />
                 </RouterLink>
@@ -212,7 +264,7 @@ const scrollToSection = (sectionId: string) => {
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-base-content flex items-center justify-center gap-3" style="font-family: 'League Spartan', sans-serif;">
+        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
           <Icon icon="heroicons:users" class="h-12 w-12" />
           I Tuoi Rappresentanti
         </h2>
@@ -223,16 +275,13 @@ const scrollToSection = (sectionId: string) => {
 
       <!-- Representatives Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div
-          v-for="rep in representatives"
-          :key="rep.id"
-          class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-        >
+        <div v-for="rep in representatives" :key="rep.id"
+          class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
           <div class="card-body text-center">
             <!-- Avatar -->
             <div class="avatar placeholder mb-4">
               <div class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] text-white rounded-full w-20 h-20">
-                <span class="text-2xl font-bold">{{ rep.name.split(' ').map((n: string) => n[0]).join('') }}</span>
+                <span class="text-2xl font-bold">{{rep.name.split(' ').map((n: string) => n[0]).join('')}}</span>
               </div>
             </div>
 
@@ -243,20 +292,12 @@ const scrollToSection = (sectionId: string) => {
 
             <!-- Contact Buttons -->
             <div class="flex gap-2 justify-center">
-              <a 
-                :href="`mailto:${rep.email}`"
-                class="btn btn-sm btn-outline btn-primary"
-                title="Invia Email"
-              >
+              <a :href="`mailto:${rep.email}`" class="btn btn-sm btn-outline btn-primary" title="Invia Email">
                 <Icon icon="heroicons:envelope" class="h-4 w-4" />
               </a>
-              
-              <a 
-                :href="`https://t.me/${rep.telegram.replace('@', '')}`"
-                target="_blank"
-                class="btn btn-sm btn-outline btn-primary"
-                title="Contatta su Telegram"
-              >
+
+              <a :href="`https://t.me/${rep.telegram.replace('@', '')}`" target="_blank"
+                class="btn btn-sm btn-outline btn-primary" title="Contatta su Telegram">
                 <Icon icon="logos:telegram" class="h-4 w-4" />
               </a>
             </div>
@@ -272,22 +313,18 @@ const scrollToSection = (sectionId: string) => {
       <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <!-- Logo & Info -->
         <div class="flex items-center gap-4">
-          <img 
-            src="/logo-dark-trasp.png" 
-            alt="Logo Rappresentanti Informatica" 
-            class="h-12"
-          >
+          <img src="/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica" class="h-12">
           <div>
-            <h3 class="font-bold text-lg">Rappresentanti Informatica</h3>
+            <h3 class="text-lg">Rappresentanti Informatica</h3>
             <p class="text-sm text-base-content/60">Università di Bologna</p>
           </div>
         </div>
 
         <!-- Quick Links -->
         <div class="flex gap-4">
-          <RouterLink to="/questionario" class="btn btn-sm btn-outline">
+          <!-- <RouterLink to="/questionario" class="btn btn-sm btn-outline">
             Questionario
-          </RouterLink>
+          </RouterLink> -->
           <button @click="scrollToSection('communications')" class="btn btn-sm btn-outline">
             Comunicazioni
           </button>
@@ -304,22 +341,20 @@ const scrollToSection = (sectionId: string) => {
       </div>
     </div>
   </footer>
-
-  <!-- Floating Action Button -->
-  <RouterLink 
-    to="/questionario"
-    class="fixed bottom-6 right-6 btn btn-circle btn-lg bg-gradient-to-br from-[#0097b2] to-[#7ed957] border-none text-white shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-200 z-50"
-    title="Vai al Questionario"
-  >
-    <Icon icon="heroicons:document-text" class="h-6 w-6" />
-  </RouterLink>
 </template>
 
 <style scoped>
 /* Custom animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .animate-float {
