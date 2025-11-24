@@ -1,7 +1,18 @@
 @import 'tailwindcss';
+
 @plugin "daisyui" {
-  themes: all;
+  themes: false;
 }
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+  --color-accent: #7ed957;
+  --color-secondary: #0097b2;
+  --color-primary: #5ea2ef;
+}
+
+;
 
 @font-face {
   font-family: 'LSBold';
@@ -15,7 +26,12 @@
   font-weight: 700;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'LSBold', sans-serif;
 }
 
@@ -32,4 +48,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .label {
   text-wrap: normal;
+}
+
+a {
+  text-decoration: solid;
+  color: var(--color-primary);
 }
