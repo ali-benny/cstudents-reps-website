@@ -3,6 +3,22 @@
   themes: all;
 }
 
+@font-face {
+  font-family: 'LSBold';
+  src: url('font/LeagueSpartan-Bold.woff2') format('woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'LSSemiBold';
+  src: url('font/LeagueSpartan-SemiBold.woff2') format('woff2');
+  font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'LSBold', sans-serif;
+}
+
 .rating {
   margin-left: 1%;
   display: inherit;
