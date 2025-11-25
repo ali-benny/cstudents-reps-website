@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="it">
 
 <head>
   <meta charset="UTF-8">
@@ -12,20 +12,6 @@
 <body>
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
-  <script>
-    function getCurrentTheme() {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    function updateFavicon() {
-      const theme = getCurrentTheme();
-      const favicon = document.querySelector('link[rel="icon"]');
-      favicon.href = favicons[theme];
-    }
-
-    updateFavicon();
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
-  </script>
 </body>
 
 </html>

@@ -5,24 +5,12 @@
 
 import fs from 'fs'
 import path from 'path'
-import dotenv from 'dotenv'
 import fetch from 'node-fetch'
 import * as cheerio from 'cheerio'
 
-dotenv.config()
-
-const channel = process.env.TELEGRAM_CHANNEL || 'infoinfounibo'
-const startDate = new Date(process.env.START_DATE || '2025-09-01')
+const channel = 'infoinfounibo'
+const startDate = new Date('2025-09-01')
 const url = `https://t.me/s/${channel}`
-
-function parseDate(raw) {
-  // Telegram shows date parts; fallback to today if missing.
-  try {
-    return new Date(raw)
-  } catch {
-    return new Date()
-  }
-}
 
 function classify(text) {
   const hashtags = Array.from(text.match(/#[\w]+/g) || []).map((h) => h.slice(1).toLowerCase())
@@ -48,7 +36,7 @@ async function run() {
   const items = []
   $('.tgme_widget_message').each((_, el) => {
     const id = $(el).attr('data-post')?.split('/')?.pop()
-    const rawText = $(el).find('.tgme_widget_message_text').html()?.trim() || ''
+    const rawText = $(el).find('.tgme_widget_message_text').html()?.trim().replace(/<i([^>]*)class="([^"]*?emoji[^"]*)"([^>]*)>/g, '<span$1class="$2"$3>').replace(/<\/i>/g, '</span>') || ''
     // First convert to plain text to extract title
     const plainText = rawText.replace(/<br\s*\/?>/g, '\n')
     if (!plainText) return
@@ -57,7 +45,7 @@ async function run() {
     let title = titleMatch || plainText.split('\n')[0] || plainText.slice(0, 100)
     // Keep content as HTML (rawText already has HTML formatting from Telegram)
     // Remove emoji background-image style attributes
-    const content = rawText.replace(/\s*style="background-image:url\([^)]+\)"/g, '')
+    let content = rawText.replace(/\s*style="background-image:url\([^)]+\)"/g, '')
     title = title.replace(/\s*style="background-image:url\([^)]+\)"/g, '')
     // Telegram shows a time element; pick it.
     const timeEl = $(el).find('time')

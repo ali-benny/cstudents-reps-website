@@ -21,7 +21,7 @@ const representatives = ref<Representative[]>([
     telegram: '@alii_benatti',
     role: 'Rappresentante',
     year: '1°',
-    curriculum: 'Magistrale'
+    curriculum: 'Magistrale',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const representatives = ref<Representative[]>([
     telegram: '@OkGuh',
     role: 'Rappresentante',
     year: '2°',
-    curriculum: 'Triennale'
+    curriculum: 'Triennale',
   },
   {
     id: 3,
@@ -39,10 +39,9 @@ const representatives = ref<Representative[]>([
     telegram: '@dark24x7',
     role: 'Rappresentante',
     year: '2°',
-    curriculum: 'Triennale'
-  }
+    curriculum: 'Triennale',
+  },
 ])
-
 
 // Smooth scroll
 const scrollToSection = (sectionId: string) => {
@@ -51,7 +50,6 @@ const scrollToSection = (sectionId: string) => {
     element.scrollIntoView({ behavior: 'smooth' })
   }
 }
-
 </script>
 
 <template>
@@ -62,26 +60,33 @@ const scrollToSection = (sectionId: string) => {
 
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
-      <div class="absolute inset-0"
-        style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;">
-      </div>
+      <div
+        class="absolute inset-0"
+        style="
+          background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+          background-size: 40px 40px;
+        "
+      ></div>
     </div>
 
     <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
       <!-- Logo -->
       <div class="mb-8">
-        <img src="/src/assets/logo/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica"
-          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg">
+        <img
+          src="/src/assets/logo/logo-dark-trasp.png"
+          alt="Logo Rappresentanti Informatica"
+          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg"
+        />
       </div>
 
       <!-- Title -->
       <h1 class="text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight">
-        Rappresentanti<br>Informatica
+        Rappresentanti<br />Informatica
       </h1>
 
       <!-- Subtitle -->
       <p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-        Il punto di riferimento tra studenti e corso di laurea.<br>
+        Il punto di riferimento tra studenti e corso di laurea.<br />
         Qui trovi comunicazioni, questionari e tutto quello che ti serve.
       </p>
 
@@ -93,13 +98,14 @@ const scrollToSection = (sectionId: string) => {
           Compila il Questionario
         </RouterLink> -->
 
-        <button @click="scrollToSection('communications')"
-          class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-[#0097b2] font-semibold px-8 transform hover:scale-105 transition-all duration-200">
+        <button
+          @click="scrollToSection('communications')"
+          class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-[#0097b2] font-semibold px-8 transform hover:scale-105 transition-all duration-200"
+        >
           <Icon icon="heroicons:arrow-down" />
           Scopri le News
         </button>
       </div>
-
     </div>
     <!-- Scroll Indicator -->
     <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce text-3xl">
@@ -114,7 +120,9 @@ const scrollToSection = (sectionId: string) => {
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
+        <h2
+          class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3"
+        >
           <Icon icon="heroicons:users" class="h-12 w-12" />
           I Tuoi Rappresentanti
         </h2>
@@ -125,13 +133,23 @@ const scrollToSection = (sectionId: string) => {
 
       <!-- Representatives Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div v-for="rep in representatives" :key="rep.id"
-          class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+        <div
+          v-for="rep in representatives"
+          :key="rep.id"
+          class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+        >
           <div class="card-body items-center">
             <!-- Avatar -->
             <div class="avatar placeholder mb-4">
-              <div class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] text-white rounded-full w-20 h-20 flex items-center justify-center">
-                <span class="text-2xl font-bold">{{rep.name.split(' ').map((n: string) => n[0]).join('')}}</span>
+              <div
+                class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] text-white rounded-full w-20 h-20 flex items-center justify-center"
+              >
+                <span class="text-2xl font-bold">{{
+                  rep.name
+                    .split(' ')
+                    .map((n: string) => n[0])
+                    .join('')
+                }}</span>
               </div>
             </div>
 
@@ -142,12 +160,20 @@ const scrollToSection = (sectionId: string) => {
 
             <!-- Contact Buttons -->
             <div class="flex gap-2 justify-center *:text-lg *:hover:text-xl">
-              <a :href="`mailto:${rep.email}`" class="btn btn-square btn-sm btn-ghost" title="Invia Email">
+              <a
+                :href="`mailto:${rep.email}`"
+                class="btn btn-square btn-sm btn-ghost"
+                title="Invia Email"
+              >
                 <Icon icon="heroicons-solid:mail" />
               </a>
 
-              <a :href="`https://t.me/${rep.telegram.replace('@', '')}`" target="_blank"
-                class="btn btn-square btn-sm btn-ghost" title="Contatta su Telegram">
+              <a
+                :href="`https://t.me/${rep.telegram.replace('@', '')}`"
+                target="_blank"
+                class="btn btn-square btn-sm btn-ghost"
+                title="Contatta su Telegram"
+              >
                 <Icon icon="logos:telegram" />
               </a>
             </div>
@@ -163,7 +189,11 @@ const scrollToSection = (sectionId: string) => {
       <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <!-- Logo & Info -->
         <div class="flex items-center gap-4">
-          <img src="/src/assets/logo/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica" class="h-12">
+          <img
+            src="/src/assets/logo/logo-dark-trasp.png"
+            alt="Logo Rappresentanti Informatica"
+            class="h-12"
+          />
           <div>
             <h3 class="text-lg">Rappresentanti Informatica</h3>
             <p class="text-sm text-base-content/60">Università di Bologna</p>
@@ -187,7 +217,9 @@ const scrollToSection = (sectionId: string) => {
       <!-- Copyright -->
       <div class="divider"></div>
       <div class="text-center text-sm text-base-content/60">
-        <p>&copy; {{ new Date().getFullYear() }} Rappresentanti Informatica - Università di Bologna</p>
+        <p>
+          &copy; {{ new Date().getFullYear() }} Rappresentanti Informatica - Università di Bologna
+        </p>
       </div>
     </div>
   </footer>
@@ -196,7 +228,6 @@ const scrollToSection = (sectionId: string) => {
 <style scoped>
 /* Custom animations */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);

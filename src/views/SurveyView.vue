@@ -176,7 +176,7 @@ watch(
           professors[index] = professor
             .split('.')
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
+            .join(' ')
         })
 
         // Aggiorna l'array delle valutazioni dei professori

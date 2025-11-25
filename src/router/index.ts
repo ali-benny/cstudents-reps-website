@@ -10,10 +10,10 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    // { 
-    //   path: '/questionario', 
-    //   name: 'survey', 
-    //   component: SurveyView 
+    // {
+    //   path: '/questionario',
+    //   name: 'survey',
+    //   component: SurveyView
     // }
   ],
 })

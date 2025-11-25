@@ -5,14 +5,12 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "dark";
+  name: 'dark';
   default: true;
   --color-accent: #7ed957;
   --color-secondary: #0097b2;
   --color-primary: #5ea2ef;
 }
-
-;
 
 @font-face {
   font-family: 'LSBold';

@@ -52,9 +52,6 @@ devDependencies:
   daisyui:
     specifier: ^5.0.43
     version: 5.5.5
-  dotenv:
-    specifier: ^16.4.5
-    version: 16.6.1
   npm-run-all2:
     specifier: ^7.0.2
     version: 7.0.2
@@ -1473,11 +1470,6 @@ packages:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
-    dev: true
-
-  /dotenv@16.6.1:
-    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
-    engines: {node: '>=12'}
     dev: true
 
   /electron-to-chromium@1.5.259:
