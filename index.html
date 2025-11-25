@@ -13,11 +13,6 @@
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
   <script>
-    const favicons = {
-      light: '/src/assets/logo/icon-light-trasp.png',
-      dark: '/src/assets/logo/icon-dark-trasp.png'
-    };
-
     function getCurrentTheme() {
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
