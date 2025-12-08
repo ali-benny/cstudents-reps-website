@@ -19,8 +19,9 @@ const selectedCategory = ref('all')
 // Categorie per il filtro
 const categories = [
   { id: 'all', name: 'Tutte', icon: 'heroicons:clipboard-document-list' },
-  // { id: 'questionario', name: 'Questionari', icon: 'heroicons:document-text' },
+  // { id: 'questionari', name: 'Questionari', icon: 'heroicons:document-text' },
   { id: 'didattica', name: 'Didattica', icon: 'heroicons:academic-cap', color: 'primary' },
+  { id: 'bandi', name: 'Bandi', icon: 'mingcute:announcement-line', color: 'warning' },
   { id: 'opportunita', name: 'Opportunità', icon: 'heroicons:rocket-launch', color: 'accent' },
   { id: 'eventi', name: 'Eventi', icon: 'heroicons:calendar-days', color: 'secondary' },
 ]
@@ -70,6 +71,8 @@ function getCategoryColor(category: string, css: string) {
         return 'btn-accent'
       case 'secondary':
         return 'btn-secondary'
+      case 'warning':
+        return 'btn-warning'
       default:
         return 'btn-primary'
     }
@@ -79,6 +82,8 @@ function getCategoryColor(category: string, css: string) {
         return 'badge-accent'
       case 'secondary':
         return 'badge-secondary'
+      case 'warning':
+        return 'badge-warning'
       default:
         return 'badge-primary'
     }
@@ -182,7 +187,7 @@ onMounted(async () => {
           </div>
           <div class="collapse-content">
             <!-- Content -->
-            <div class="text-base-content/80 leading-relaxed mb-4" v-html="comm.content"></div>
+            <div class="leading-relaxed mb-4" v-html="comm.content"></div>
 
             <!-- Footer -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
