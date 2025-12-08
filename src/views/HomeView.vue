@@ -7,7 +7,6 @@ interface Representative {
   name: string
   email: string
   telegram: string
-  role?: string
   year?: string
   curriculum?: string
 }
@@ -19,7 +18,6 @@ const representatives = ref<Representative[]>([
     name: 'Alice Benatti',
     email: 'alice.benatti4@studio.unibo.it',
     telegram: '@alii_benatti',
-    role: 'Rappresentante',
     year: '1°',
     curriculum: 'Magistrale',
   },
@@ -28,7 +26,6 @@ const representatives = ref<Representative[]>([
     name: 'William Brusa',
     email: 'william.brusa@studio.unibo.it',
     telegram: '@OkGuh',
-    role: 'Rappresentante',
     year: '2°',
     curriculum: 'Triennale',
   },
@@ -37,7 +34,6 @@ const representatives = ref<Representative[]>([
     name: 'Rohan Regmi',
     email: 'rohan.regmi@studio.unibo.it',
     telegram: '@dark24x7',
-    role: 'Rappresentante',
     year: '2°',
     curriculum: 'Triennale',
   },
@@ -155,7 +151,6 @@ const scrollToSection = (sectionId: string) => {
 
             <!-- Info -->
             <h3 class="card-title justify-center text-lg mb-2">{{ rep.name }}</h3>
-            <p class="text-base-content/70 text-sm mb-1">{{ rep.role }}</p>
             <p class="text-base-content/60 text-xs mb-4">{{ rep.year }} • {{ rep.curriculum }}</p>
 
             <!-- Contact Buttons -->
