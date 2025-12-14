@@ -56,34 +56,33 @@ const scrollToSection = (sectionId: string) => {
 
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
-      <div
-        class="absolute inset-0"
-        style="
+      <div class="absolute inset-0" style="
           background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
           background-size: 40px 40px;
-        "
-      ></div>
+        "></div>
     </div>
 
-    <div class="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+    <div class="relative z-10 text-center  px-4 max-w-6xl mx-auto">
       <!-- Logo -->
       <div class="mb-8">
-        <img
-          src="/src/assets/logo/logo-dark-trasp.png"
-          alt="Logo Rappresentanti Informatica"
-          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg"
-        />
+        <img src="/src/assets/logo/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica"
+          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg" />
       </div>
 
       <!-- Title -->
-      <h1 class="text-4xl md:text-6xl lg:text-7xl mb-6 leading-tight">
-        Rappresentanti<br />Informatica
-      </h1>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight">
+        Rappresentanti Studenti
+      </h1> 
+      <h3 class="text-6xl mb-6 leading-tight">
+        Informatica L e LM
+      </h3>
+      <h3 class="text-xl mb-6 leading-tight">
+        Alma Mater Studiorum - Università di Bologna
+      </h3>
 
       <!-- Subtitle -->
-      <p class="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-        Il punto di riferimento tra studenti e corso di laurea.<br />
-        Qui trovi comunicazioni, questionari e tutto quello che ti serve.
+      <p class="text-xl md:text-2xl mb-8 /90 max-w-3xl mx-auto leading-relaxed">
+        La tua voce nel Corso di Laurea: news, bandi, assemblee, opportunità e supporto per migliorare insieme il tuo percorso accademico.
       </p>
 
       <!-- CTA Buttons -->
@@ -94,10 +93,8 @@ const scrollToSection = (sectionId: string) => {
           Compila il Questionario
         </RouterLink> -->
 
-        <button
-          @click="scrollToSection('communications')"
-          class="btn btn-lg btn-outline border-white text-white hover:bg-white hover:text-[#0097b2] font-semibold px-8 transform hover:scale-105 transition-all duration-200"
-        >
+        <button @click="scrollToSection('communications')"
+          class="btn btn-lg btn-outline font-semibold px-8 transform hover:scale-105 transition-all duration-200">
           <Icon icon="heroicons:arrow-down" />
           Scopri le News
         </button>
@@ -111,35 +108,47 @@ const scrollToSection = (sectionId: string) => {
 
   <ComunicationSection></ComunicationSection>
 
+
   <!-- Representatives Section -->
   <section id="representatives" class="py-20 bg-base-200">
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3"
-        >
+      <div class="text-center mb-10">
+        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
           <Icon icon="heroicons:users" class="h-12 w-12" />
           I Tuoi Rappresentanti
         </h2>
-        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
-          Ecco chi lavora per rappresentare i tuoi interessi nel corso di laurea
+        <p class="text-xl text-base-content/70 max-w-4xl mx-auto">
+          Hai dubbi, idee o problemi da segnalare? Siamo qui per ascoltarti e aiutarti.
+          <br> Miglioriamo insieme il corso di laurea!
         </p>
+      </div>
+      <!-- Telegram Group Card - Highlighted -->
+      <div class="flex justify-center w-full mb-10">
+        <div class="card bg-linear-to-br from-[#0097b2] to-[#7ed957] shadow-2xl w-full">
+          <div class="card-body items-center">
+            <h3 class="card-title text-3xl">Scrivici sul Gruppo Telegram!</h3>
+            <p class="text-center mb-4 text-md">È il modo più veloce per contattarci tutti insieme. Ti rispondiamo il
+              prima possibile!
+            </p>
+            <a href="https://t.me/CStudentReps"
+              class="btn btn-lg btn-outline !text-base-content rounded-lg font-semibold transform hover:scale-105 transition-all duration-200"
+              target="_blank">
+              <Icon icon="logos:telegram" class="text-xl mr-2" />
+              Unisciti al Gruppo
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Representatives Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div
-          v-for="rep in representatives"
-          :key="rep.id"
-          class="card bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-        >
+        <div v-for="rep in representatives" :key="rep.id" class="card bg-base-100 shadow-lg hover:shadow-2xl">
           <div class="card-body items-center">
             <!-- Avatar -->
             <div class="avatar placeholder mb-4">
               <div
-                class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] text-white rounded-full w-20 h-20 flex items-center justify-center"
-              >
+                class="bg-gradient-to-br from-[#0097b2] to-[#7ed957]  rounded-full w-20 h-20 flex items-center justify-center">
                 <span class="text-2xl font-bold">{{
                   rep.name
                     .split(' ')
@@ -155,20 +164,12 @@ const scrollToSection = (sectionId: string) => {
 
             <!-- Contact Buttons -->
             <div class="flex gap-2 justify-center *:text-lg *:hover:text-xl">
-              <a
-                :href="`mailto:${rep.email}`"
-                class="btn btn-square btn-sm btn-ghost"
-                title="Invia Email"
-              >
+              <a :href="`mailto:${rep.email}`" class="btn btn-square btn-sm btn-ghost" title="Invia Email">
                 <Icon icon="heroicons-solid:mail" />
               </a>
 
-              <a
-                :href="`https://t.me/${rep.telegram.replace('@', '')}`"
-                target="_blank"
-                class="btn btn-square btn-sm btn-ghost"
-                title="Contatta su Telegram"
-              >
+              <a :href="`https://t.me/${rep.telegram.replace('@', '')}`" target="_blank"
+                class="btn btn-square btn-sm btn-ghost" title="Contatta su Telegram">
                 <Icon icon="logos:telegram" />
               </a>
             </div>
@@ -184,11 +185,7 @@ const scrollToSection = (sectionId: string) => {
       <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <!-- Logo & Info -->
         <div class="flex items-center gap-4">
-          <img
-            src="/src/assets/logo/logo-dark-trasp.png"
-            alt="Logo Rappresentanti Informatica"
-            class="h-12"
-          />
+          <img src="/src/assets/logo/logo-dark-trasp.png" alt="Logo Rappresentanti Informatica" class="h-12" />
           <div>
             <h3 class="text-lg">Rappresentanti Informatica</h3>
             <p class="text-sm text-base-content/60">Università di Bologna</p>
@@ -223,6 +220,7 @@ const scrollToSection = (sectionId: string) => {
 <style scoped>
 /* Custom animations */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);

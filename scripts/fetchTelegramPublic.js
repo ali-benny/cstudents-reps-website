@@ -1,6 +1,5 @@
 // Scrape public Telegram channel without API credentials.
 // Caveat: HTML structure may change; limited metadata; no rate-limit guarantees.
-// Env vars: START_DATE=YYYY-MM-DD (optional)
 // Usage: node scripts/fetchTelegramPublic.js
 
 import fs from 'fs'
@@ -15,10 +14,7 @@ const url = `https://t.me/s/${channel}`
 function classify(text) {
   const hashtags = Array.from(text.match(/#[\w]+/g) || []).map((h) => h.slice(1).toLowerCase())
   const category =
-    hashtags.find((h) => ['didattica', 'opportunita', 'eventi'].includes(h)) ||
-    Array.from(text.match(/Hello[\w]+/g) || []).map((h) => h.slice(1).toLowerCase()).length
-      ? 'eventi'
-      : 'didattica'
+    hashtags.find((h) => ['didattica', 'opportunita', 'eventi'].includes(h))
   const priority = hashtags.find((h) => ['high', 'medium', 'low'].includes(h)) || 'low'
   return { category, priority }
 }
