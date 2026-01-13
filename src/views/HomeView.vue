@@ -72,7 +72,7 @@ const scrollToSection = (sectionId: string) => {
       <!-- Title -->
       <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight">
         Rappresentanti Studenti
-      </h1> 
+      </h1>
       <h3 class="text-6xl mb-6 leading-tight">
         Informatica L e LM
       </h3>
@@ -82,7 +82,8 @@ const scrollToSection = (sectionId: string) => {
 
       <!-- Subtitle -->
       <p class="text-xl md:text-2xl mb-8 /90 max-w-3xl mx-auto leading-relaxed">
-        La tua voce nel Corso di Laurea: news, bandi, assemblee, opportunità e supporto per migliorare insieme il tuo percorso accademico.
+        La tua voce nel Corso di Laurea: news, bandi, assemblee, opportunità e supporto per migliorare insieme il tuo
+        percorso accademico.
       </p>
 
       <!-- CTA Buttons -->
@@ -127,16 +128,24 @@ const scrollToSection = (sectionId: string) => {
       <div class="flex justify-center w-full mb-10">
         <div class="card bg-linear-to-br from-[#0097b2] to-[#7ed957] shadow-2xl w-full">
           <div class="card-body items-center">
-            <h3 class="card-title text-3xl">Scrivici sul Gruppo Telegram!</h3>
-            <p class="text-center mb-4 text-md">È il modo più veloce per contattarci tutti insieme. Ti rispondiamo il
-              prima possibile!
+            <h3 class="card-title text-3xl">Siamo qui per te</h3>
+            <p class="text-center mb-4 text-md">Hai bisogno di supporto o vuoi condividere le tue idee?
+Scrivici su Telegram o alla mail dei rappresentanti.
             </p>
-            <a href="https://t.me/CStudentReps"
-              class="btn btn-lg btn-outline !text-base-content rounded-lg font-semibold transform hover:scale-105 transition-all duration-200"
-              target="_blank">
-              <Icon icon="logos:telegram" class="text-xl mr-2" />
-              Unisciti al Gruppo
-            </a>
+            <div class="flex gap-3">
+              <a href="https://t.me/CStudentReps"
+                class="btn btn-lg btn-outline !text-base-content rounded-lg font-semibold transform hover:scale-105 transition-all duration-200"
+                target="_blank">
+                <Icon icon="logos:telegram" class="text-xl mr-2" />
+                Unisciti al Gruppo
+              </a>
+              <a href="mailto:Informatica-rappr_stud_L_LM@unibo.it"
+                class="btn btn-lg btn-outline !text-base-content rounded-lg font-semibold transform hover:scale-105 transition-all duration-200"
+                target="_blank">
+                <Icon icon="heroicons-solid:mail" class="text-xl mr-2" />
+                Scrivici una mail
+              </a>
+            </div>
           </div>
         </div>
       </div>
