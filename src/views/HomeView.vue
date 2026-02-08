@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import ComunicationSection from '@/components/ComunicationSection.vue'
 import ActivitiesSection from '@/components/ActivitiesSection.vue'
@@ -48,6 +48,34 @@ const scrollToSection = (sectionId: string) => {
     element.scrollIntoView({ behavior: 'smooth' })
   }
 }
+
+// Auto-scroll quando l'utente scrolla un po' verso il basso
+let hasAutoScrolled = false
+const handleScroll = () => {
+  const scrollY = window.scrollY
+  const scrollThreshold = 10 // per attivare l'auto-scroll
+  const resetThreshold = 50 // Torna sotto px per resettare
+
+  // Reset quando torna in cima
+  if (scrollY < resetThreshold) {
+    hasAutoScrolled = false
+    return
+  }
+
+  // Auto-scroll quando scrolla giù
+  if (!hasAutoScrolled && scrollY > scrollThreshold) {
+    hasAutoScrolled = true
+    scrollToSection('activities')
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
@@ -67,7 +95,7 @@ const scrollToSection = (sectionId: string) => {
       ></div>
     </div>
 
-    <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+    <div class="relative z-10 text-center px-4 max-w-7xl mx-auto">
       <!-- Logo -->
       <div class="mb-8">
         <img
@@ -77,24 +105,59 @@ const scrollToSection = (sectionId: string) => {
         />
       </div>
 
-      <!-- Title -->
-      <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight">Rappresentanti Studenti</h1>
+      <div class="relative inline-block mb-8">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 rounded-3xl blur-xl opacity-60 animate-pulse"
+        ></div>
+        <div
+          class="relative bg-gradient-to-br from-[#0097b2] to-[#7ed957] rounded-3xl px-8 py-6 md:px-12 md:py-8 border-2 border-white/30"
+        >
+          <div class="absolute -top-4 -right-6 md:-right-8 z-10">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full shadow-lg transform rotate-12"
+            >
+              <Icon icon="heroicons:sparkles" class="h-5 w-5 md:h-6 md:w-6" />
+              <span class="font-bold text-sm md:text-lg">Evento Speciale</span>
+              <Icon icon="heroicons:sparkles" class="h-5 w-5 md:h-6 md:w-6" />
+            </div>
+          </div>
+
+          <div class="relative inline-block mb-6">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight">Welcome Back Day</h1>
+          </div>
+          <h3 class="text-3xl md:text-4xl lg:text-5xl mb-4 leading-tight">
+            venerdì 13 febbraio 2026 | 10:00 - 12:00
+          </h3>
+          <h3 class="text-xl leading-tight">Aula Magna - viale Berti Pichat 5</h3>
+        </div>
+      </div>
+
+      <!-- Versione originale -->
+      <!-- <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight">Rappresentanti Studenti</h1>
       <h3 class="text-6xl mb-6 leading-tight">Informatica L e LM</h3>
-      <h3 class="text-xl mb-6 leading-tight">Alma Mater Studiorum - Università di Bologna</h3>
+      <h3 class="text-xl mb-6 leading-tight">Alma Mater Studiorum - Università di Bologna</h3> -->
 
       <!-- Subtitle -->
-      <p class="text-xl md:text-2xl mb-8 /90 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+        <i>Sei uno studente della magistrale?</i><br />Incontra i docenti degli insegnamentin del
+        secondo semestre, presenteranno brevemente il loro corso permettendoti di scegliere al
+        meglio!
+      </p>
+      <!-- <p class="text-xl md:text-2xl mb-8 /90 max-w-3xl mx-auto leading-relaxed">
         La tua voce nel Corso di Laurea: news, bandi, assemblee, opportunità e supporto per
         migliorare insieme il tuo percorso accademico.
-      </p>
+      </p> -->
 
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <!-- <RouterLink to="/questionario"
-          class="btn btn-lg bg-white text-[#0097b2] hover:bg-white/90 border-none shadow-lg font-semibold px-8 transform hover:scale-105 transition-all duration-200">
-          <Icon icon="heroicons:document-text" class="h-6 w-6 mr-2" />
-          Compila il Questionario
-        </RouterLink> -->
+        <a
+          href="https://teams.microsoft.com/meet/33156573730523?p=PhvuHwBcFDt6dJgJhY"
+          target="_blank"
+          class="btn btn-lg bg-white text-[#0097b2] hover:bg-white/90 border-none shadow-lg font-semibold px-8 transform hover:scale-105 transition-all duration-200"
+        >
+          <Icon icon="logos:microsoft-teams" class="h-6 w-6 mr-2" />
+          Unisciti su Teams
+        </a>
 
         <button
           @click="scrollToSection('communications')"
@@ -106,9 +169,12 @@ const scrollToSection = (sectionId: string) => {
       </div>
     </div>
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce text-3xl">
+    <button
+      class="absolute cursor-pointer bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce text-3xl"
+      @click="scrollToSection('activities')"
+    >
       <Icon icon="heroicons:arrow-down" />
-    </div>
+    </button>
   </section>
 
   <ActivitiesSection></ActivitiesSection>
@@ -292,5 +358,56 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Animazioni per card brillanti */
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.sparkle-bg {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 60% 70%, rgba(255, 165, 0, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(255, 105, 180, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(255, 215, 0, 0.3) 0%, transparent 50%);
+  animation: sparkle-move 4s ease-in-out infinite;
+}
+
+@keyframes sparkle-move {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 </style>
