@@ -26,11 +26,14 @@
 
 h1,
 h2,
-h3,
+h3 {
+  font-family: 'LSBold', sans-serif;
+}
+
 h4,
 h5,
 h6 {
-  font-family: 'LSBold', sans-serif;
+  font-family: 'LSSemiBold', sans-serif;
 }
 
 .rating {

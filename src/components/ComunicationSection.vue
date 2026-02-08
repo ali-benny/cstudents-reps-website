@@ -100,15 +100,15 @@ onMounted(async () => {
       // Basic validation and fallback mapping
       communications.value = Array.isArray(data)
         ? data.map((m: any) => ({
-          id: m.id,
-          title: m.title || (m.content ? String(m.content).slice(0, 80) + '…' : 'Senza titolo'),
-          content: m.content || '',
-          date: m.date || new Date().toISOString(),
-          author: m.author || 'Telegram',
-          category: m.category || 'didattica',
-          priority: m.priority,
-          cta: m.cta || null,
-        }))
+            id: m.id,
+            title: m.title || (m.content ? String(m.content).slice(0, 80) + '…' : 'Senza titolo'),
+            content: m.content || '',
+            date: m.date || new Date().toISOString(),
+            author: m.author || 'Telegram',
+            category: m.category || 'didattica',
+            priority: m.priority,
+            cta: m.cta || null,
+          }))
         : []
     }
   } catch (e) {
@@ -123,13 +123,19 @@ onMounted(async () => {
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
+        <h2
+          class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3"
+        >
           <Icon icon="heroicons:megaphone" class="h-12 w-12" />
           Comunicazioni
         </h2>
         <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
           Resta aggiornato su tutte le novità del corso di laurea
-          <a href="https://t.me/infoinfounibo" target="_blank" class="underline inline-flex items-center gap-1">
+          <a
+            href="https://t.me/infoinfounibo"
+            target="_blank"
+            class="underline inline-flex items-center gap-1"
+          >
             entrando nel canale Telegram
             <Icon icon="logos:telegram" class="inline-block" />
           </a>
@@ -138,12 +144,17 @@ onMounted(async () => {
 
       <!-- Category Filter -->
       <div class="flex flex-wrap justify-center gap-3 mb-12">
-        <button v-for="category in categories" :key="category.id" @click="selectedCategory = category.id" :class="[
-          'btn btn-sm transition-all duration-200 rounded-lg',
-          selectedCategory === category.id
-            ? getCategoryColor(category.id, 'btn')
-            : 'btn-outline ' + getCategoryColor(category.id, 'btn'),
-        ]">
+        <button
+          v-for="category in categories"
+          :key="category.id"
+          @click="selectedCategory = category.id"
+          :class="[
+            'btn btn-sm transition-all duration-200 rounded-lg',
+            selectedCategory === category.id
+              ? getCategoryColor(category.id, 'btn')
+              : 'btn-outline ' + getCategoryColor(category.id, 'btn'),
+          ]"
+        >
           <Icon :icon="category.icon" class="h-4 w-4 mr-2" />
           {{ category.name }}
         </button>
@@ -151,17 +162,26 @@ onMounted(async () => {
 
       <!-- Communications Grid -->
       <div class="grid gap-6 md:gap-8">
-        <div v-for="comm in filteredCommunications" :key="comm.id" :class="[
-          'bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 collapse collapse-arrow',
-          getPriorityClass(comm.priority),
-        ]">
+        <div
+          v-for="comm in filteredCommunications"
+          :key="comm.id"
+          :class="[
+            'bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 collapse collapse-arrow',
+            getPriorityClass(comm.priority),
+          ]"
+        >
           <input type="checkbox" />
           <!-- Header -->
-          <div class="collapse-title flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+          <div
+            class="collapse-title flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4"
+          >
             <div class="flex items-start gap-3">
               <Icon :icon="getCategoryIcon(comm.category)" class="h-6 w-6 text-primary" />
               <div>
-                <div class="card-title text-lg md:text-xl mb-2 text-base-content" v-html="comm.title"></div>
+                <div
+                  class="card-title text-lg md:text-xl mb-2 text-base-content"
+                  v-html="comm.title"
+                ></div>
                 <div class="flex items-center gap-2 text-sm text-base-content/60">
                   <Icon icon="heroicons:calendar-days" class="h-4 w-4" />
                   {{ formatDate(comm.date) }}
