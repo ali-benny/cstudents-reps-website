@@ -139,7 +139,7 @@ onUnmounted(() => {
 
       <!-- Subtitle -->
       <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
-        <i>Sei uno studente della magistrale?</i><br />Incontra i docenti degli insegnamentin del
+        <i>Sei uno studente della magistrale?</i><br />Incontra i docenti degli insegnamenti del
         secondo semestre, presenteranno brevemente il loro corso permettendoti di scegliere al
         meglio!
       </p>
