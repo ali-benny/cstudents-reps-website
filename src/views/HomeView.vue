@@ -123,12 +123,12 @@ onUnmounted(() => {
           </div>
 
           <div class="relative inline-block mb-6">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl leading-tight">Welcome Back Day</h1>
+            <h1 class="text-3xl md:text-6xl lg:text-7xl leading-tight">Welcome Back Day</h1>
           </div>
-          <h3 class="text-3xl md:text-4xl lg:text-5xl mb-4 leading-tight">
+          <h3 class="text-2xl md:text-4xl lg:text-5xl mb-4 leading-tight">
             venerdì 13 febbraio 2026 | 10:00 - 12:00
           </h3>
-          <h3 class="text-xl leading-tight">Aula Magna - viale Berti Pichat 5</h3>
+          <h3 class="text-ld md:text-xl leading-tight">Aula Magna - viale Berti Pichat 5</h3>
         </div>
       </div>
 
@@ -138,7 +138,7 @@ onUnmounted(() => {
       <h3 class="text-xl mb-6 leading-tight">Alma Mater Studiorum - Università di Bologna</h3> -->
 
       <!-- Subtitle -->
-      <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
+      <p class="text-lg md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
         <i>Sei uno studente della magistrale?</i><br />Incontra i docenti degli insegnamenti del
         secondo semestre, presenteranno brevemente il loro corso permettendoti di scegliere al
         meglio!
@@ -207,7 +207,7 @@ onUnmounted(() => {
               Hai bisogno di supporto o vuoi condividere le tue idee? Scrivici su Telegram o alla
               mail dei rappresentanti.
             </p>
-            <div class="flex gap-3">
+            <div class="flex gap-3 flex-col md:flex-row">
               <a
                 href="https://t.me/CStudentReps"
                 class="btn btn-lg btn-outline !text-base-content rounded-lg font-semibold transform hover:scale-105 transition-all duration-200"
@@ -298,7 +298,7 @@ onUnmounted(() => {
         </div>
 
         <!-- Quick Links -->
-        <div class="flex gap-4">
+        <div class="flex gap-1 md:gap-4">
           <!-- <RouterLink to="/questionario" class="btn btn-sm btn-outline">
             Questionario
           </RouterLink> -->

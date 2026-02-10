@@ -72,7 +72,9 @@ onMounted(async () => {
             <Icon icon="heroicons:academic-cap" class="h-8 w-8" />
           </div>
           <div>
-            <h3 class="text-3xl font-bold text-base-content">Consigli di Corso di Studi</h3>
+            <h2 class="text-xl md:text-3xl font-bold text-base-content">
+              Consigli di Corso di Studi
+            </h2>
             <p class="text-base-content/70">Portiamo la tua voce nelle decisioni importanti</p>
           </div>
           <div class="badge badge-success ml-auto">Attivo</div>
@@ -93,7 +95,7 @@ onMounted(async () => {
             <Icon icon="heroicons:light-bulb" class="h-8 w-8" />
           </div>
           <div>
-            <h3 class="text-3xl font-bold text-base-content">Proposte Portate</h3>
+            <h2 class="text-xl md:text-3xl font-bold text-base-content">Proposte Portate</h2>
             <p class="text-base-content/70">Le tue idee diventano realtà</p>
           </div>
         </div>
@@ -144,7 +146,7 @@ onMounted(async () => {
             <Icon icon="heroicons:document-text" class="h-8 w-8" />
           </div>
           <div>
-            <h3 class="text-3xl font-bold text-base-content">Assemblee Studentesche</h3>
+            <h2 class="text-xl md:text-3xl font-bold text-base-content">Assemblee Studentesche</h2>
             <p class="text-base-content/70">Verbali e documenti delle assemblee</p>
           </div>
         </div>
