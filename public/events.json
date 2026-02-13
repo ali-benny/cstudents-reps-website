@@ -1,0 +1,40 @@
+[
+	{
+		"id": 1,
+		"title": "Welcome Back Day - Presentazione Insegnamenti a Scelta Informatica LM 2025/26",
+		"date": "2026-02-13",
+		"description": "Evento di presentazione degli insegnamenti del secondo semestre del Corso di Laurea Magistrale in Informatica, promosso dai rappresentanti degli studenti.<br>Un'occasione per conoscere i docenti e avere un confronto diretto con loro per scegliere gli insegnamenti a scelta con più consapevolezza.<br><br>Di seguito sono disponibili i materiali presentati durante l’evento e la registrazione completa dell’incontro.",
+		"attachments": [
+			{
+				"name": "SLIDES PRESENTATE ALL'EVENTO",
+				"link": "/documents/wbd/WelcomeBackDay-slides.pdf"
+			},
+			{
+				"name": "Vai alla registrazione dell'evento",
+				"link": "https://liveunibo-my.sharepoint.com/:v:/r/personal/valerio_velino2_unibo_it/Documents/Recordings/Presentazione%20Insegnamenti%20Informatica%20LM%20-%202%C2%B0%20ciclo-20260213_100500-Registrazione%20della%20riunione.mp4?csf=1&web=1&e=GkLR8X&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D"
+			},
+			{
+				"name": "Slide - Calcolo Parallelo",
+				"link": "/documents/wbd/calcolo_parallelo-marzolla.pdf"
+			},{
+				"name": "Slide - Computer Vision",
+				"link": "/documents/wbd/computer_vision-lisanti.pdf"
+			},{
+				"name": "Slide - Modelli di Sistemi Concorrenti",
+				"link": "/documents/wbd/msc-gorrieri.pdf"
+			},{
+				"name": "Slide - Internet of Things",
+				"link": "/documents/wbd/internet_of_things-bononi.pdf"
+			},{
+				"name": "Slide - Artificial Intelligence, Blockchain e Criptovalute nello Sviluppo Software",
+				"link": "/documents/wbd/aibcss-succi.pdf"
+			},{
+				"name": "Slide - Multimedia Data Management",
+				"link": "/documents/wbd/mdm-bartolini.pdf"
+			},{
+				"name": "Slide - Usability & User Experience Design",
+				"link": "/documents/wbd/uuxd-vitali.pdf"
+			}
+		]
+	}
+]
