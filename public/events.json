@@ -7,7 +7,7 @@
 		"attachments": [
 			{
 				"name": "SLIDES PRESENTATE ALL'EVENTO",
-				"link": "/documents/wbd/WelcomeBackDay-slides.pdf"
+				"link": "/wbd-2526-2/WelcomeBackDay-slides.pdf"
 			},
 			{
 				"name": "Vai alla registrazione dell'evento",
@@ -15,25 +15,25 @@
 			},
 			{
 				"name": "Slide - Calcolo Parallelo",
-				"link": "/documents/wbd/calcolo_parallelo-marzolla.pdf"
+				"link": "/wbd-2526-2/calcolo_parallelo-marzolla.pdf"
 			},{
 				"name": "Slide - Computer Vision",
-				"link": "/documents/wbd/computer_vision-lisanti.pdf"
+				"link": "/wbd-2526-2/computer_vision-lisanti.pdf"
 			},{
 				"name": "Slide - Modelli di Sistemi Concorrenti",
-				"link": "/documents/wbd/msc-gorrieri.pdf"
+				"link": "/wbd-2526-2/msc-gorrieri.pdf"
 			},{
 				"name": "Slide - Internet of Things",
-				"link": "/documents/wbd/internet_of_things-bononi.pdf"
+				"link": "/wbd-2526-2/internet_of_things-bononi.pdf"
 			},{
 				"name": "Slide - Artificial Intelligence, Blockchain e Criptovalute nello Sviluppo Software",
-				"link": "/documents/wbd/aibcss-succi.pdf"
+				"link": "/wbd-2526-2/aibcss-succi.pdf"
 			},{
 				"name": "Slide - Multimedia Data Management",
-				"link": "/documents/wbd/mdm-bartolini.pdf"
+				"link": "/wbd-2526-2/mdm-bartolini.pdf"
 			},{
 				"name": "Slide - Usability & User Experience Design",
-				"link": "/documents/wbd/uuxd-vitali.pdf"
+				"link": "/wbd-2526-2/uuxd-vitali.pdf"
 			}
 		]
 	}
