@@ -32,21 +32,17 @@ interface ActivitySection {
 }
 
 const sections = ref<ActivitySection[]>([
-  // {
-  //   id: 'councils',
-  //   icon: 'heroicons:academic-cap',
-  //   title: 'Consigli di Corso di Studi',
-  //   subtitle: 'Portiamo la tua voce nelle decisioni importanti',
-  //   colorClass: 'bg-primary text-primary-content',
-  //   buttonClass: 'btn-primary',
-  //   badge: {
-  //     text: 'Attivo',
-  //     class: 'badge-success',
-  //   },
-  //   emptyMessage: 'Nessuna informazione disponibile al momento.',
-  //   items: [],
-  // },
-
+  {
+    id: 'meetings',
+    icon: 'heroicons:document-text',
+    title: 'Assemblee Studentesche',
+    subtitle: 'Verbali e documenti delle assemblee',
+    colorClass: 'bg-secondary text-secondary-content',
+    buttonClass: 'btn-secondary !text-secondary-content',
+    dataSource: '/meetings.json',
+    emptyMessage: 'Nessun verbale disponibile al momento.',
+    items: [],
+  },
   {
     id: 'events',
     icon: 'heroicons:calendar',
@@ -68,18 +64,7 @@ const sections = ref<ActivitySection[]>([
     dataSource: '/proposals.json',
     emptyMessage: 'Nessuna proposta disponibile al momento.',
     items: [],
-  },
-  {
-    id: 'meetings',
-    icon: 'heroicons:document-text',
-    title: 'Assemblee Studentesche',
-    subtitle: 'Verbali e documenti delle assemblee',
-    colorClass: 'bg-secondary text-secondary-content',
-    buttonClass: 'btn-secondary !text-secondary-content',
-    dataSource: '/meetings.json',
-    emptyMessage: 'Nessun verbale disponibile al momento.',
-    items: [],
-  },
+  }
 ])
 
 const formatDate = (dateString: string) => {

@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import ComunicationSection from '@/components/ComunicationSection.vue'
 import ActivitiesSection from '@/components/ActivitiesSection.vue'
+import EventsHomeTitle from '@/components/EventsHomeTitle.vue'
 
 interface Representative {
   id: number | string
@@ -41,31 +42,43 @@ const representatives = ref<Representative[]>([
   },
 ])
 
-// Smooth scroll
-const scrollToSection = (sectionId: string) => {
+let isProgrammaticScroll = false
+let programmaticScrollTimer: number | null = null
+
+const scrollToSection = (sectionId: string, timeout = 900) => {
   const element = document.getElementById(sectionId)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
+  if (!element) return
+
+  // Segnala che stiamo scorrendo programmaticamente
+  isProgrammaticScroll = true
+  if (programmaticScrollTimer) window.clearTimeout(programmaticScrollTimer)
+
+  element.scrollIntoView({ behavior: 'smooth' })
+
+  // Resetta la flag dopo la durata stimata dello smooth scroll
+  programmaticScrollTimer = window.setTimeout(() => {
+    isProgrammaticScroll = false
+    programmaticScrollTimer = null
+  }, timeout)
 }
 
-// Auto-scroll quando l'utente scrolla un po' verso il basso
 let hasAutoScrolled = false
 const handleScroll = () => {
-  const scrollY = window.scrollY
-  const scrollThreshold = 10 // per attivare l'auto-scroll
-  const resetThreshold = 50 // Torna sotto px per resettare
+  if (isProgrammaticScroll) return // ignora scroll causati dal codice
 
-  // Reset quando torna in cima
+  const scrollY = window.scrollY ?? document.documentElement.scrollTop
+  const scrollThreshold = 10
+  const resetThreshold = 50
+
   if (scrollY < resetThreshold) {
     hasAutoScrolled = false
     return
   }
 
-  // Auto-scroll quando scrolla giù
   if (!hasAutoScrolled && scrollY > scrollThreshold) {
     hasAutoScrolled = true
-    scrollToSection('activities')
+    // usa la nuova API con flag (opzionale: aumentare timeout se necessario)
+    scrollToSection('activities', 900)
   }
 }
 
@@ -104,7 +117,8 @@ onUnmounted(() => {
           class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg"
         />
       </div>
-
+      <EventsHomeTitle></EventsHomeTitle>
+<!-- 
       <h1 class="text-3xl md:text-6xl lg:text-7xl leading-tight">Rappresentanti Studenti</h1>
       <h3 class="text-2xl md:text-4xl lg:text-5xl mb-6 leading-tight">Informatica L e LM</h3>
       <h3 class="text-lg md:text-xl mb-6 leading-tight">

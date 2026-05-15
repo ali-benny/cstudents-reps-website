@@ -24,16 +24,24 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: 'LSRegular';
+  src: url('font/LeagueSpartan-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+
 h1,
 h2,
 h3 {
   font-family: 'LSBold', sans-serif;
 }
 
-h4,
-h5,
-h6 {
+h4 {
   font-family: 'LSSemiBold', sans-serif;
+}
+
+h5{
+  font-family: 'LSRegular', sans-serif;
 }
 
 .rating {

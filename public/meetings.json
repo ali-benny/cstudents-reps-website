@@ -10,5 +10,21 @@
         "link": "/documents/verbale-assemblea-02-12-2025.pdf"
       }
     ]
+  },
+  {
+    "id": 2,
+    "title": "Verbale Assemblea del 20 Maggio 2026",
+    "date": "2026-05-20",
+    "description": "Discussione sulle proposte per i nuovi piani didattici a.a. 2027-2028 e raccolta delle opinioni degli studenti per approvare o meno le proposte da presentare alla Commissione Piani Didattici.",
+    "attachments": [
+      {
+        "name": "Aula Teams",
+        "link": "https://teams.microsoft.com/meet/386438130758200?p=AivLAvAF5qWFYUM3g6"
+      },
+      {
+        "name": "Questionario",
+        "link": "https://forms.office.com/e/mn2W1wKw4a"
+      }
+    ]
   }
 ]
