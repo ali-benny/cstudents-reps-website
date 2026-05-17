@@ -17,7 +17,7 @@ const showNavbar = computed(() => route.name !== 'home')
       <div class="flex-none">
         <nav class="menu menu-horizontal px-1">
           <RouterLink to="/" class="btn btn-ghost">Home</RouterLink>
-          <RouterLink to="/questionario" class="btn btn-ghost">Questionario</RouterLink>
+          <!-- <RouterLink to="/questionario" class="btn btn-ghost">Questionario</RouterLink> -->
         </nav>
       </div>
       <!-- Theme Light-Dark controller -->

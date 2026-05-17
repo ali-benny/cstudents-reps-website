@@ -6,7 +6,7 @@ Piattaforma web dei rappresentanti del corso di laurea magistrale in Computer Sc
 
 - **Homepage moderna** con comunicazioni e informazioni sui rappresentanti
 - **Sistema di comunicazioni** con filtri per categoria e priorità
-- **Questionario studenti** per la valutazione dei corsi
+- **Sondaggi studenti** per la valutazione dei corsi
 - **Contatti rappresentanti** con email e Telegram
 - **Design responsive** ottimizzato per mobile e desktop
 

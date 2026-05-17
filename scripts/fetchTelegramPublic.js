@@ -13,10 +13,11 @@ const url = `https://t.me/s/${channel}`
 
 function classify(text) {
   const hashtags = Array.from(text.match(/#[\w]+/g) || []).map((h) => h.slice(1).toLowerCase())
-  const category =
-    hashtags.find((h) => ['didattica', 'opportunita', 'eventi'].includes(h))
+  // Collect all allowed category hashtags (support multiple tags)
+  const allowed = ['didattica', 'opportunita', 'eventi', 'assemblee', 'sondaggi', 'bandi']
+  const categories = hashtags.filter((h) => allowed.includes(h))
   const priority = hashtags.find((h) => ['high', 'medium', 'low'].includes(h)) || 'low'
-  return { category, priority }
+  return { categories, priority }
 }
 
 async function run() {
@@ -32,7 +33,13 @@ async function run() {
   const items = []
   $('.tgme_widget_message').each((_, el) => {
     const id = $(el).attr('data-post')?.split('/')?.pop()
-    const rawText = $(el).find('.tgme_widget_message_text').html()?.trim().replace(/<i([^>]*)class="([^"]*?emoji[^"]*)"([^>]*)>/g, '<span$1class="$2"$3>').replace(/<\/i>/g, '</span>') || ''
+    const rawText =
+      $(el)
+        .find('.tgme_widget_message_text')
+        .html()
+        ?.trim()
+        .replace(/<i([^>]*)class="([^"]*?emoji[^"]*)"([^>]*)>/g, '<span$1class="$2"$3>')
+        .replace(/<\/i>/g, '</span>') || ''
     // First convert to plain text to extract title
     const plainText = rawText.replace(/<br\s*\/?>/g, '\n')
     if (!plainText) return
@@ -48,14 +55,15 @@ async function run() {
     const dateIso = timeEl.attr('datetime')
     const date = dateIso ? new Date(dateIso) : new Date()
     if (date < startDate) return
-    const { category, priority } = classify(plainText)
+    const { categories, priority } = classify(plainText)
     items.push({
       id: id || Date.now() + '_' + Math.random(),
       title: title,
       content: content,
       date: date.toISOString(),
       author: 'Telegram Channel',
-      category,
+      // store as array; fallback to ['didattica'] if none found
+      category: Array.isArray(categories) && categories.length ? categories : ['didattica'],
       priority,
     })
   })

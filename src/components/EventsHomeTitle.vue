@@ -34,7 +34,7 @@
         <a href="https://forms.office.com/e/mn2W1wKw4a" target="_blank"
           class="btn btn-lg text-primary! border-none shadow-lg font-semibold px-8 transform hover:scale-105 transition-all duration-200">
           <Icon icon="heroicons:clipboard-document-list" class="h-6 w-6 mr-2" />
-          Dai la tua opinione tramite il Questionario
+          Dai la tua opinione tramite il Sondaggio Online
         </a>
       </div>
     </div>
