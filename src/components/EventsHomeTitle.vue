@@ -1,5 +1,5 @@
 <template>
-  <div class="relative inline-block mb-8">
+  <div class="relative w-full mb-8">
     <div
       class="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 rounded-3xl blur-xl opacity-60 animate-pulse">
     </div>
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="relative inline-block mb-6 border-b-4 border-base-content/50">
+      <div class="relative w-full mb-6 border-b-4 border-base-content/50">
         <h1 class="text-3xl md:text-6xl lg:text-7xl leading-tight">Assemblea Studentesca</h1>
         <h2 class="text-xl md:text-4xl">Proposte per i nuovi Piani Didattici a.a. 2027-2028</h2>
 
@@ -25,16 +25,19 @@
         mercoledì 20 maggio 2026 | dalle 16:00
       </h3>
 
-      <div class="flex flex-col lg:flex-row gap-4 justify-center items-center">
-        <a href="https://teams.microsoft.com/meet/386438130758200?p=AivLAvAF5qWFYUM3g6" target="_blank"
-          class="btn btn-lg bg-white text-secondary hover:bg-white/90 border-none shadow-lg font-semibold md:px-8">
-          <Icon icon="logos:microsoft-teams" class="h-6 w-6 md:mr-2" />
-          Entra in chiamata su Teams
+      <div class="flex flex-col lg:flex-row gap-4 justify-center items-center w-full *:text-md md:*:text-lg">
+        <a href="https://teams.microsoft.com/meet/386438130758200?p=AivLAvAF5qWFYUM3g6"
+           target="_blank"
+           class="btn gap-2 font-semibold min-w-0 w-full lg:w-auto h-auto min-h-0 flex items-center justify-center px-4 py-3 bg-white text-secondary border-none shadow-lg">
+          <Icon icon="logos:microsoft-teams" class="h-6 w-6 min-w-fit" />
+          <span class="whitespace-normal break-words text-center">Entra in chiamata su Teams</span>
         </a>
-        <a href="https://forms.office.com/e/mn2W1wKw4a" target="_blank"
-          class="btn btn-lg text-primary! border-none shadow-lg md:px-8 transform hover:scale-105 transition-all duration-200">
-          <Icon icon="heroicons:clipboard-document-list" class="h-8 w-8 md:mr-2" />
-          Dai la tua opinione tramite il Sondaggio Online
+      
+        <a href="https://forms.office.com/e/mn2W1wKw4a"
+           target="_blank"
+           class="btn gap-2 font-semibold min-w-0 w-full lg:w-auto h-auto min-h-0 flex items-center justify-center px-4 py-3 border-none shadow-lg hover:scale-105 transition-all duration-200">
+          <Icon icon="heroicons:clipboard-document-list" class="h-6 w-6 min-w-fit" />
+          <span class="whitespace-normal break-words text-center">Dai la tua opinione tramite il Sondaggio Online</span>
         </a>
       </div>
     </div>
