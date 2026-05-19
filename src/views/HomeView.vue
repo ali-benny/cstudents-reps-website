@@ -108,13 +108,13 @@ onUnmounted(() => {
       ></div>
     </div>
 
-    <div class="relative z-10 text-center px-4 max-w-7xl mx-auto">
+    <div class="relative z-10 text-center px-4 max-w-7xl mx-auto md:mt-[-4%]">
       <!-- Logo -->
-      <div class="mb-8">
+      <div class="lg:mb-6">
         <img
           src="/src/assets/logo/logo-dark-trasp.png"
           alt="Logo Rappresentanti Informatica"
-          class="h-24 md:h-32 mx-auto mb-6 drop-shadow-lg"
+          class="h-24 md:h-32 mx-auto drop-shadow-lg"
         />
       </div>
       <EventsHomeTitle></EventsHomeTitle>

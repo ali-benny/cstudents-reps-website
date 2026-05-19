@@ -40,22 +40,72 @@ async function run() {
         ?.trim()
         .replace(/<i([^>]*)class="([^"]*?emoji[^"]*)"([^>]*)>/g, '<span$1class="$2"$3>')
         .replace(/<\/i>/g, '</span>') || ''
-    // First convert to plain text to extract title
-    const plainText = rawText.replace(/<br\s*\/?>/g, '\n')
-    if (!plainText) return
-    // Extract title: everything before first \n\n, in plain text
-    const titleMatch = plainText.split('\n\n')[0]
-    let title = titleMatch || plainText.split('\n')[0] || plainText.slice(0, 100)
-    // Keep content as HTML (rawText already has HTML formatting from Telegram)
-    // Remove emoji background-image style attributes
-    let content = rawText.replace(/\s*style="background-image:url\([^)]+\)"/g, '')
-    title = title.replace(/\s*style="background-image:url\([^)]+\)"/g, '')
+    // Prepare variables and try robust HTML title extraction; on error fall back
+    let normalizedText = ''
+    let title = ''
+    let content = ''
+
+    try {
+      // Simpler, deterministic rule: title = text from start until first double newline (\n\n)
+      // Build a cleaned HTML version (for content) but extract title from plain text
+      const $titleDoc = cheerio.load(`<div>${rawText}</div>`)
+      $titleDoc('script').remove()
+      $titleDoc('[style]').each((_, el) => {
+        const style = $titleDoc(el).attr('style') || ''
+        const newStyle = style
+          .split(';')
+          .map((s) => s.trim())
+          .filter((s) => s && !/background-image/i.test(s))
+          .join(';')
+        if (newStyle) $titleDoc(el).attr('style', newStyle)
+        else $titleDoc(el).removeAttr('style')
+      })
+
+      // cleaned HTML to store as content
+      const cleanedHtml = $titleDoc('div').html() || ''
+
+      // produce plain-text representation: <br> -> \n, closing li -> \n, then strip tags
+      let plainForTitle = cleanedHtml.replace(/<br\s*\/?\>/gi, '\n')
+      plainForTitle = plainForTitle.replace(/<\/li>/gi, '\n')
+      // remove any remaining tags to get text
+      plainForTitle = cheerio.load(`<div>${plainForTitle}</div>`).root().text()
+      normalizedText = String(plainForTitle)
+        .replace(/\r/g, '')
+        .replace(/\n\s*\n+/g, '\n\n')
+        .trim()
+      if (!normalizedText) return
+
+      const idx = normalizedText.indexOf('\n\n')
+      const titleText =
+        idx >= 0
+          ? normalizedText.slice(0, idx)
+          : normalizedText.split('\n')[0] || normalizedText.slice(0, 100)
+
+      title = titleText.trim()
+      content = cleanedHtml.replace(/\s*style=\"background-image:url\([^)]+\)\"/g, '')
+    } catch (err) {
+      // On any error, fallback to simple plain-text extraction (previous behavior)
+      // Log error for diagnostics and continue
+      console.error(
+        'Title extraction error, falling back to simple extraction:',
+        err && err.message ? err.message : err,
+      )
+      const plainText = rawText.replace(/<br\s*\/?\>/g, '\n')
+      if (!plainText) return
+      const titleMatch = plainText.split('\n\n')[0]
+      title = titleMatch || plainText.split('\n')[0] || plainText.slice(0, 100)
+      content = rawText.replace(/\s*style="background-image:url\([^)]+\)"/g, '')
+      normalizedText = plainText
+        .replace(/\r/g, '')
+        .replace(/\n\s*\n+/g, '\n\n')
+        .trim()
+    }
     // Telegram shows a time element; pick it.
     const timeEl = $(el).find('time')
     const dateIso = timeEl.attr('datetime')
     const date = dateIso ? new Date(dateIso) : new Date()
     if (date < startDate) return
-    const { categories, priority } = classify(plainText)
+    const { categories, priority } = classify(normalizedText)
     items.push({
       id: id || Date.now() + '_' + Math.random(),
       title: title,

@@ -169,9 +169,9 @@ onMounted(async () => {
           <!-- Header -->
           <div class="collapse-title flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
             <div class="flex items-start gap-3">
-              <Icon :icon="getCategoryIcon(comm.category)" class="h-6 w-6 text-primary" />
-              <div>
-                <div class="card-title text-lg md:text-xl mb-2 text-base-content" v-html="comm.title"></div>
+              <Icon :icon="getCategoryIcon(comm.category)" class="h-6 w-6 text-primary flex-shrink-0" />
+              <div class="min-w-0">
+                <div class="card-title text-lg md:text-xl mb-2 text-base-content break-words whitespace-normal" v-html="comm.title"></div>
                 <div class="flex items-center gap-2 text-sm text-base-content/60">
                   <Icon icon="heroicons:calendar-days" class="h-4 w-4" />
                   {{ formatDate(comm.date) }}
