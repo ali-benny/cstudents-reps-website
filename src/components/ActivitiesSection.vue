@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue'
 interface Attachment {
   name: string
   link: string
+  disabled?: boolean
 }
 
 interface ActivityItem {
@@ -165,10 +166,11 @@ onMounted(async () => {
                   </div>
                 </div>
                 <div v-if="item.attachments?.length" class="flex flex-wrap gap-2 items-start">
-                  <a v-for="(attachment, index) in item.attachments" :key="index" :href="attachment.link"
-                    target="_blank"
-                    :class="['btn btn-sm gap-2 font-semibold min-w-0 w-full sm:w-auto', section.buttonClass]"
-                    :title="attachment.name">
+                  <a v-for="(attachment, index) in item.attachments" :key="index" :href="attachment.disabled ? undefined : attachment.link" 
+                    target="_blank" rel="noopener noreferrer"
+                    :class="['btn btn-sm gap-2 font-semibold min-w-0 w-full sm:w-auto', section.buttonClass, { 'opacity-50 pointer-events-none': attachment.disabled }]"
+                    :aria-disabled="attachment.disabled ? 'true' : 'false'"
+                    @click="attachment.disabled && $event.preventDefault()" :title="attachment.name">
                     <Icon :icon="getAttachmentIcon(attachment.link)" class="h-4 w-4 min-w-fit" />
                     {{ attachment.name }}
                   </a>

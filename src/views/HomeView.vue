@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink } from 'vue-router'
 import ComunicationSection from '@/components/ComunicationSection.vue'
 import ActivitiesSection from '@/components/ActivitiesSection.vue'
-import EventsHomeTitle from '@/components/EventsHomeTitle.vue'
+// import EventsHomeTitle from '@/components/EventsHomeTitle.vue'
 
 interface Representative {
   id: number | string
@@ -117,8 +116,7 @@ onUnmounted(() => {
           class="h-24 md:h-32 mx-auto drop-shadow-lg"
         />
       </div>
-      <EventsHomeTitle></EventsHomeTitle>
-<!-- 
+      <!-- <EventsHomeTitle></EventsHomeTitle> -->
       <h1 class="text-3xl md:text-6xl lg:text-7xl leading-tight">Rappresentanti Studenti</h1>
       <h3 class="text-2xl md:text-4xl lg:text-5xl mb-6 leading-tight">Informatica L e LM</h3>
       <h3 class="text-lg md:text-xl mb-6 leading-tight">
