@@ -65,7 +65,7 @@ const sections = ref<ActivitySection[]>([
     dataSource: '/proposals.json',
     emptyMessage: 'Nessuna proposta disponibile al momento.',
     items: [],
-  }
+  },
 ])
 
 const formatDate = (dateString: string) => {
@@ -124,7 +124,9 @@ onMounted(async () => {
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
+        <h2
+          class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3"
+        >
           <Icon icon="heroicons:briefcase" class="h-12 w-12" />
           Cosa Stiamo Facendo Per Te
         </h2>
@@ -134,8 +136,11 @@ onMounted(async () => {
       </div>
 
       <!-- Dynamic Sections -->
-      <div v-for="(section, index) in sections" :key="section.id"
-        :class="index < sections.length - 1 ? 'mb-16' : 'mb-12'">
+      <div
+        v-for="(section, index) in sections"
+        :key="section.id"
+        :class="index < sections.length - 1 ? 'mb-16' : 'mb-12'"
+      >
         <!-- Section Header -->
         <div class="flex items-center gap-3 mb-6">
           <div :class="['p-3 rounded-lg', section.colorClass]">
@@ -154,7 +159,11 @@ onMounted(async () => {
 
         <!-- Section Content -->
         <div v-if="section.items.length > 0" class="grid gap-4">
-          <div v-for="item in section.items" :key="item.id" class="card bg-base-100 hover:shadow-xl">
+          <div
+            v-for="item in section.items"
+            :key="item.id"
+            class="card bg-base-100 hover:shadow-xl"
+          >
             <div class="card-body">
               <div class="flex flex-col gap-3">
                 <div>
@@ -166,11 +175,21 @@ onMounted(async () => {
                   </div>
                 </div>
                 <div v-if="item.attachments?.length" class="flex flex-wrap gap-2 items-start">
-                  <a v-for="(attachment, index) in item.attachments" :key="index" :href="attachment.disabled ? undefined : attachment.link" 
-                    target="_blank" rel="noopener noreferrer"
-                    :class="['btn btn-sm gap-2 font-semibold min-w-0 w-full sm:w-auto', section.buttonClass, { 'opacity-50 pointer-events-none': attachment.disabled }]"
+                  <a
+                    v-for="(attachment, index) in item.attachments"
+                    :key="index"
+                    :href="attachment.disabled ? undefined : attachment.link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :class="[
+                      'btn btn-sm gap-2 font-semibold min-w-0 w-full sm:w-auto',
+                      section.buttonClass,
+                      { 'opacity-50 pointer-events-none': attachment.disabled },
+                    ]"
                     :aria-disabled="attachment.disabled ? 'true' : 'false'"
-                    @click="attachment.disabled && $event.preventDefault()" :title="attachment.name">
+                    @click="attachment.disabled && $event.preventDefault()"
+                    :title="attachment.name"
+                  >
                     <Icon :icon="getAttachmentIcon(attachment.link)" class="h-4 w-4 min-w-fit" />
                     {{ attachment.name }}
                   </a>

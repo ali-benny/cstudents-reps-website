@@ -2,6 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Icon } from '@iconify/vue'
+import { categories, getCategoryIcon, getCategoryColor } from '@/utils'
 
 interface Communication {
   id: number | string
@@ -17,23 +18,26 @@ interface Communication {
 
 const communications = ref<Communication[]>([])
 const selectedCategory = ref('all')
-// Categorie per il filtro
-const categories = [
-  { id: 'all', name: 'Tutte', icon: 'heroicons:clipboard-document-list' },
-  { id: 'didattica', name: 'Didattica', icon: 'heroicons:academic-cap', color: 'primary' },
-  { id: 'bandi', name: 'Bandi', icon: 'mingcute:announcement-line', color: 'warning' },
-  { id: 'opportunita', name: 'Opportunità', icon: 'heroicons:rocket-launch', color: 'accent' },
-  { id: 'eventi', name: 'Eventi', icon: 'heroicons:calendar-days', color: 'secondary' },
-  { id: 'assemblee', name: 'Assemblee', icon: 'heroicons:users', color: 'primary' },
-  { id: 'sondaggi', name: 'Sondaggi', icon: 'heroicons:document-text', color: 'warning' },
-]
 
 // Comunicazioni filtrate
 const filteredCommunications = computed(() => {
-  if (selectedCategory.value === 'all') {
-    return communications.value
-  }
-  return communications.value.filter((comm) => (Array.isArray(comm.category) ? comm.category.includes(selectedCategory.value) : false))
+  return communications.value
+    .filter(
+      (comm) =>
+        selectedCategory.value === 'all' ||
+        (Array.isArray(comm.category) ? comm.category.includes(selectedCategory.value) : false),
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5)
+
+  // if (selectedCategory.value === 'all') {
+  //   // Ordina per data decrescente e prendi le ultime 5 comunicazioni
+  //   return communications.value
+  //     .slice()
+  //     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  //     .slice(0, 5)
+  // }
+  // return communications.value.filter((comm) => (Array.isArray(comm.category) ? comm.category.includes(selectedCategory.value) : false))
 })
 
 // Funzioni utili
@@ -46,61 +50,6 @@ const formatDate = (dateString: string) => {
   })
 }
 
-const getPriorityClass = (priority: string) => {
-  switch (priority) {
-    case 'high':
-      return 'border-l-4 border-error bg-error/10'
-    case 'medium':
-      return 'border-l-4 border-warning bg-warning/10'
-    case 'low':
-      return 'border-l-4 border-secondary bg-secondary/10'
-    default:
-      return 'border-l-4 border-base-300 bg-base-200/50'
-  }
-}
-
-const getRepresentativeCategory = (category: string | string[]) => {
-  if (Array.isArray(category)) return category[0]
-  return category || 'didattica'
-}
-
-const getCategoryIcon = (category: string | string[]) => {
-  const id = getRepresentativeCategory(category)
-  const cat = categories.find((c) => c.id === id)
-  return cat?.icon || 'heroicons:clipboard-document-list'
-}
-function getCategoryColor(category: string | string[], css: string) {
-  const id = getRepresentativeCategory(category)
-  const cat = categories.find((c) => c.id === id)
-  const color = cat?.color || 'primary'
-
-  if (css === 'btn') {
-    switch (color) {
-      case 'accent':
-        return 'btn-accent'
-      case 'secondary':
-        return 'btn-secondary'
-      case 'warning':
-        return 'btn-warning'
-      default:
-        return 'btn-primary'
-    }
-  } else if (css === 'badge') {
-    switch (color) {
-      case 'accent':
-        return 'badge-accent'
-      case 'secondary':
-        return 'badge-secondary'
-      case 'warning':
-        return 'badge-warning'
-      default:
-        return 'badge-primary'
-    }
-  }
-  return ''
-}
-
-// Load communications from generated JSON
 onMounted(async () => {
   try {
     const res = await fetch('/communications.json')
@@ -109,16 +58,20 @@ onMounted(async () => {
       // Basic validation and fallback mapping
       communications.value = Array.isArray(data)
         ? data.map((m: any) => ({
-          id: m.id,
-          title: m.title || (m.content ? String(m.content).slice(0, 80) + '…' : 'Senza titolo'),
-          content: m.content || '',
-          date: m.date || new Date().toISOString(),
-          author: m.author || 'Telegram',
-          // normalize category to array for backward compatibility
-          category: Array.isArray(m.category) ? m.category : m.category ? [m.category] : ['didattica'],
-          priority: m.priority,
-          cta: m.cta || null,
-        }))
+            id: m.id,
+            title: m.title || (m.content ? String(m.content).slice(0, 80) + '…' : 'Senza titolo'),
+            content: m.content || '',
+            date: m.date || new Date().toISOString(),
+            author: m.author || 'Telegram',
+            // normalize category to array for backward compatibility
+            category: Array.isArray(m.category)
+              ? m.category
+              : m.category
+                ? [m.category]
+                : ['didattica'],
+            priority: m.priority,
+            cta: m.cta || null,
+          }))
         : []
     }
   } catch (e) {
@@ -133,45 +86,43 @@ onMounted(async () => {
     <div class="container mx-auto px-4 max-w-6xl">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3">
+        <h2
+          class="text-4xl md:text-5xl mb-4 text-base-content flex items-center justify-center gap-3"
+        >
           <Icon icon="heroicons:megaphone" class="h-12 w-12" />
-          Comunicazioni
+          Comunicazioni più recenti
         </h2>
         <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
           Resta aggiornato su tutte le novità del corso di laurea
-          <a href="https://t.me/infoinfounibo" target="_blank" class="underline inline-flex items-center gap-1">
+          <a
+            href="https://t.me/infoinfounibo"
+            target="_blank"
+            class="underline inline-flex items-center gap-1"
+          >
             entrando nel canale Telegram
             <Icon icon="logos:telegram" class="inline-block" />
           </a>
         </p>
       </div>
 
-      <!-- Category Filter -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12">
-        <button v-for="category in categories" :key="category.id" @click="selectedCategory = category.id" :class="[
-          'btn btn-sm transition-all duration-200 rounded-lg',
-          selectedCategory === category.id
-            ? getCategoryColor(category.id, 'btn')
-            : 'btn-outline ' + getCategoryColor(category.id, 'btn'),
-        ]">
-          <Icon :icon="category.icon" class="h-4 w-4 mr-2" />
-          {{ category.name }}
-        </button>
-      </div>
-
       <!-- Communications Grid -->
       <div class="grid gap-6 md:gap-8">
-        <div v-for="comm in filteredCommunications" :key="comm.id" :class="[
-          'bg-base-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 collapse collapse-arrow',
-          getPriorityClass(comm.priority),
-        ]">
+        <div
+          v-for="comm in filteredCommunications"
+          :key="comm.id"
+          class="bg-primary/10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 collapse collapse-arrow"
+        >
           <input type="checkbox" />
           <!-- Header -->
-          <div class="collapse-title flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+          <div
+            class="collapse-title flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4"
+          >
             <div class="flex items-start gap-3">
-              <Icon :icon="getCategoryIcon(comm.category)" class="h-6 w-6 text-primary flex-shrink-0" />
               <div class="min-w-0">
-                <div class="card-title text-lg md:text-xl mb-2 text-base-content break-words whitespace-normal" v-html="comm.title"></div>
+                <div
+                  class="card-title text-lg md:text-xl mb-2 text-base-content break-words whitespace-normal"
+                  v-html="comm.title"
+                ></div>
                 <div class="flex items-center gap-2 text-sm text-base-content/60">
                   <Icon icon="heroicons:calendar-days" class="h-4 w-4" />
                   {{ formatDate(comm.date) }}
@@ -180,9 +131,12 @@ onMounted(async () => {
             </div>
 
             <div class="flex flex-wrap gap-2">
-              <span v-for="cat in (Array.isArray(comm.category) ? comm.category : [comm.category])" :key="cat"
-                :class="['badge', getCategoryColor(cat, 'badge')]">
-                {{(categories.find(c => c.id === cat) || { name: cat }).name}}
+              <span
+                v-for="cat in Array.isArray(comm.category) ? comm.category : [comm.category]"
+                :key="cat"
+                :class="['badge', getCategoryColor(cat, 'badge')]"
+              >
+                {{ (categories.find((c) => c.id === cat) || { name: cat }).name }}
               </span>
             </div>
           </div>
@@ -206,6 +160,10 @@ onMounted(async () => {
             </div>
           </div>
         </div>
+        <a class="btn btn-accent btn-outline rounded-lg w-64 mx-auto" href="/archive"
+          >Leggi di più nell'archivio
+          <Icon icon="heroicons:arrow-right" class="h-4 w-4 ml-2" />
+        </a>
       </div>
     </div>
   </section>

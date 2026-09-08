@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import ComunicationSection from '@/components/ComunicationSection.vue'
 import ActivitiesSection from '@/components/ActivitiesSection.vue'
+import { scrollToSection, isProgrammaticScroll } from '@/utils'
 // import EventsHomeTitle from '@/components/EventsHomeTitle.vue'
 
 interface Representative {
@@ -40,26 +41,6 @@ const representatives = ref<Representative[]>([
     curriculum: 'Triennale',
   },
 ])
-
-let isProgrammaticScroll = false
-let programmaticScrollTimer: number | null = null
-
-const scrollToSection = (sectionId: string, timeout = 900) => {
-  const element = document.getElementById(sectionId)
-  if (!element) return
-
-  // Segnala che stiamo scorrendo programmaticamente
-  isProgrammaticScroll = true
-  if (programmaticScrollTimer) window.clearTimeout(programmaticScrollTimer)
-
-  element.scrollIntoView({ behavior: 'smooth' })
-
-  // Resetta la flag dopo la durata stimata dello smooth scroll
-  programmaticScrollTimer = window.setTimeout(() => {
-    isProgrammaticScroll = false
-    programmaticScrollTimer = null
-  }, timeout)
-}
 
 let hasAutoScrolled = false
 const handleScroll = () => {
@@ -257,50 +238,6 @@ onUnmounted(() => {
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="bg-base-300 py-12">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-        <!-- Logo & Info -->
-        <div class="flex items-center gap-4">
-          <img
-            src="/src/assets/logo/logo-dark-trasp.png"
-            alt="Logo Rappresentanti Informatica"
-            class="h-12"
-          />
-          <div>
-            <h3 class="text-lg">Rappresentanti Informatica</h3>
-            <p class="text-sm text-base-content/60">Università di Bologna</p>
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="flex gap-1 md:gap-4">
-          <!-- <RouterLink to="/questionario" class="btn btn-sm btn-outline">
-            Questionario
-          </RouterLink> -->
-          <button @click="scrollToSection('activities')" class="btn btn-sm btn-outline">
-            Cosa Stiamo Facendo
-          </button>
-          <button @click="scrollToSection('communications')" class="btn btn-sm btn-outline">
-            Comunicazioni
-          </button>
-          <button @click="scrollToSection('representatives')" class="btn btn-sm btn-outline">
-            Contatti
-          </button>
-        </div>
-      </div>
-
-      <!-- Copyright -->
-      <div class="divider"></div>
-      <div class="text-center text-sm text-base-content/60">
-        <p>
-          &copy; {{ new Date().getFullYear() }} Rappresentanti Informatica - Università di Bologna
-        </p>
-      </div>
-    </div>
-  </footer>
 </template>
 
 <style scoped>

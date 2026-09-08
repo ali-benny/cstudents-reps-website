@@ -10,6 +10,11 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
+    {
+      path: '/archive',
+      name: 'archive',
+      component: () => import('../views/ArchiveView.vue'),
+    },
     // {
     //   path: '/questionario',
     //   name: 'survey',

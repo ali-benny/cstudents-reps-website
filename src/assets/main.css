@@ -40,7 +40,7 @@ h4 {
   font-family: 'LSSemiBold', sans-serif;
 }
 
-h5{
+h5 {
   font-family: 'LSRegular', sans-serif;
 }
 
@@ -61,5 +61,4 @@ h5{
 
 a {
   text-decoration: solid;
-  color: var(--color-primary);
 }
