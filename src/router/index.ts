@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ArchiveView from '@/views/ArchiveView.vue'
 import SurveyView from '@/views/SurveyView.vue'
 
 const router = createRouter({
@@ -13,7 +14,7 @@ const router = createRouter({
     {
       path: '/archive',
       name: 'archive',
-      component: () => import('../views/ArchiveView.vue'),
+      component: ArchiveView,
     },
     // {
     //   path: '/questionario',
