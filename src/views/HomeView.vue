@@ -204,7 +204,7 @@ onUnmounted(() => {
               <div
                 class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] rounded-full w-20 h-20 flex items-center justify-center"
               >
-                <img v-if="rep.photo" :src="rep.photo" alt="Foto di {{ rep.name }}" class="rounded-full w-full h-full object-cover" />
+                <img v-if="rep.photo" :src="rep.photo" class="rounded-full w-full h-full object-cover" />
                 <span v-else class="text-2xl font-bold">{{
                   rep.name
                     .split(' ')
