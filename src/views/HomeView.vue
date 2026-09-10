@@ -24,7 +24,7 @@ const representatives = ref<Representative[]>([
     telegram: '@alii_benatti',
     year: '2°',
     curriculum: 'Magistrale',
-    photo: '/src/assets/rappre/alice.jpg'
+    photo: new URL('@/assets/rappre/alice.jpg', import.meta.url).href
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const representatives = ref<Representative[]>([
     telegram: '@OkGuh',
     year: '3°',
     curriculum: 'Triennale',
-    photo: '/src/assets/rappre/william.jpg'
+    photo: new URL('@/assets/rappre/william.jpg', import.meta.url).href
   },
   {
     id: 3,
