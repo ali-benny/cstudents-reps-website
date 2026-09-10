@@ -12,6 +12,7 @@ interface Representative {
   telegram: string
   year?: string
   curriculum?: string
+  photo?: string
 }
 import { Icon } from '@iconify/vue'
 
@@ -23,6 +24,7 @@ const representatives = ref<Representative[]>([
     telegram: '@alii_benatti',
     year: '2°',
     curriculum: 'Magistrale',
+    photo: '/src/assets/rappre/alice.jpg'
   },
   {
     id: 2,
@@ -31,6 +33,7 @@ const representatives = ref<Representative[]>([
     telegram: '@OkGuh',
     year: '3°',
     curriculum: 'Triennale',
+    photo: '/src/assets/rappre/william.jpg'
   },
   {
     id: 3,
@@ -201,7 +204,8 @@ onUnmounted(() => {
               <div
                 class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] rounded-full w-20 h-20 flex items-center justify-center"
               >
-                <span class="text-2xl font-bold">{{
+                <img v-if="rep.photo" :src="rep.photo" alt="Foto di {{ rep.name }}" class="rounded-full w-full h-full object-cover" />
+                <span v-else class="text-2xl font-bold">{{
                   rep.name
                     .split(' ')
                     .map((n: string) => n[0])
