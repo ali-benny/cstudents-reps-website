@@ -24,7 +24,7 @@ const representatives = ref<Representative[]>([
     telegram: '@alii_benatti',
     year: '2°',
     curriculum: 'Magistrale',
-    photo: new URL('@/assets/rappre/alice.jpg', import.meta.url).href
+    photo: new URL('@/assets/rappre/alice.jpg', import.meta.url).href,
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const representatives = ref<Representative[]>([
     telegram: '@OkGuh',
     year: '3°',
     curriculum: 'Triennale',
-    photo: new URL('@/assets/rappre/william.jpg', import.meta.url).href
+    photo: new URL('@/assets/rappre/william.jpg', import.meta.url).href,
   },
   {
     id: 3,
@@ -204,7 +204,11 @@ onUnmounted(() => {
               <div
                 class="bg-gradient-to-br from-[#0097b2] to-[#7ed957] rounded-full w-20 h-20 flex items-center justify-center"
               >
-                <img v-if="rep.photo" :src="rep.photo" class="rounded-full w-full h-full object-cover" />
+                <img
+                  v-if="rep.photo"
+                  :src="rep.photo"
+                  class="rounded-full w-full h-full object-cover"
+                />
                 <span v-else class="text-2xl font-bold">{{
                   rep.name
                     .split(' ')

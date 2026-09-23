@@ -1,18 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Verbale Assemblea del 2 Dicembre 2025",
-    "date": "2025-12-02",
-    "description": "Discussione sugli insegnamenti e sulle proposte degli studenti per migliorare l'offerta formativa. Si è parlato anche di estendere l'orario di chiusura del dipartimento per facilitare lo studio e la ricerca.",
-    "attachments": [
-      {
-        "name": "Verbale completo",
-        "link": "/documents/verbale-assemblea-02-12-2025.pdf"
-      }
-    ]
-  },
-  {
-    "id": 2,
     "title": "Sondaggio Proposte Piani Didattici 2027/2028",
     "date": "2026-05-20",
     "description": "Discussione sulle proposte per i nuovi piani didattici a.a. 2027-2028 e raccolta delle opinioni degli studenti per approvare o meno le proposte da presentare alla Commissione Piani Didattici.<br>Abbiamo elaborato i risultati del sondaggio, che sono stati condivisi con la Commissione Revisione Piani Didattici. Le proposte di piani didattici a.a. 2027-2028 sono state elaborate in base ai risultati, e portate in Consiglio del 12/06/2026.",
@@ -20,10 +7,12 @@
       {
         "name": "Analisi Risultati Laurea Triennale",
         "link": "/documents/questionario-studenti-proposte-piani-didattici-a.a2027_28/analisi-questionario-proposte-piani-didattici-a.a2027_28-LT-2026-05-20.pdf"
-      },{
+      },
+      {
         "name": "Analisi Risultati Laurea Magistrale",
         "link": "/documents/questionario-studenti-proposte-piani-didattici-a.a2027_28/analisi-questionario-proposte-piani-didattici-a.a2027_28-LM-2026-05-20.pdf"
-      },{
+      },
+      {
         "name": "Risultati Complessivi Sondaggio",
         "link": "/documents/questionario-studenti-proposte-piani-didattici-a.a2027_28/allegato-risultati-sondaggio-2026-05-20.xlsx"
       },
@@ -31,6 +20,17 @@
         "name": "Sondaggio su proposte piani didattici - chiuso il 20 Maggio 2026",
         "link": "https://forms.office.com/e/mn2W1wKw4a",
         "disabled": true
+      }
+    ]
+  },
+  {
+    "title": "Verbale Assemblea del 2 Dicembre 2025",
+    "date": "2025-12-02",
+    "description": "Discussione sugli insegnamenti e sulle proposte degli studenti per migliorare l'offerta formativa. Si è parlato anche di estendere l'orario di chiusura del dipartimento per facilitare lo studio e la ricerca.",
+    "attachments": [
+      {
+        "name": "Verbale completo",
+        "link": "/documents/verbale-assemblea-02-12-2025.pdf"
       }
     ]
   }

@@ -1,6 +1,16 @@
 [
+		{
+		"title": "Welcome Day a.a. 2026/2027",
+		"date": "2026-09-22",
+		"description": "Evento di benvenuto alle nuove Matricole dei Corsi di Laurea Triennale e Magistrale di Informatica.<br>Un'occasione per incontrare e conoscere noi rappresentanti e le realtà studentesche del dipartimento: <a href='students.cs.unibo.it'>ADMStaff</a>, <a href='cartabinaria.students.cs.unibo.it'>CartaBinaria</a> e <a href='ulis.se'>Ulisse</a>.<br><br>Di seguito sono disponibili i materiali mostrati all'evento.",
+		"attachments": [
+			{
+				"name": "SLIDES PRESENTATE ALL'EVENTO",
+				"link": "/wd-2627/WelcomeDay2627-slides.pdf"
+			}
+		]
+	},
 	{
-		"id": 1,
 		"title": "Welcome Back Day - Presentazione Insegnamenti a Scelta Informatica LM 2025/26",
 		"date": "2026-02-13",
 		"description": "Evento di presentazione degli insegnamenti del secondo semestre del Corso di Laurea Magistrale in Informatica, promosso dai rappresentanti degli studenti.<br>Un'occasione per conoscere i docenti e avere un confronto diretto con loro per scegliere gli insegnamenti a scelta con più consapevolezza.<br><br>Di seguito sono disponibili i materiali presentati durante l’evento e la registrazione completa dell’incontro.",
