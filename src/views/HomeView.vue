@@ -100,8 +100,8 @@ onUnmounted(() => {
           class="h-24 md:h-32 mx-auto drop-shadow-lg"
         />
       </div>
-      <EventsHomeTitle></EventsHomeTitle>
-      <!-- <h1 class="text-3xl md:text-6xl lg:text-7xl leading-tight">Rappresentanti Studenti</h1>
+      <!-- <EventsHomeTitle></EventsHomeTitle> -->
+      <h1 class="text-3xl md:text-6xl lg:text-7xl leading-tight">Rappresentanti Studenti</h1>
       <h3 class="text-2xl md:text-4xl lg:text-5xl mb-6 leading-tight">Informatica L e LM</h3>
       <h3 class="text-lg md:text-xl mb-6 leading-tight">
         Alma Mater Studiorum - Università di Bologna
@@ -110,7 +110,7 @@ onUnmounted(() => {
       <p class="text-xl md:text-2xl mb-8 /90 max-w-3xl mx-auto leading-relaxed">
         La tua voce nel Corso di Laurea: news, bandi, assemblee, opportunità e supporto per
         migliorare insieme il tuo percorso accademico.
-      </p> -->
+      </p>
 
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">

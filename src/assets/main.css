@@ -61,4 +61,5 @@ h5 {
 
 a {
   text-decoration: solid;
+  color: var(--color-primary);
 }

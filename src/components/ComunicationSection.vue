@@ -160,10 +160,10 @@ onMounted(async () => {
             </div>
           </div>
         </div>
-        <a class="btn btn-accent btn-outline rounded-lg w-64 mx-auto" href="/archive"
+        <RouterLink class="btn btn-accent btn-outline rounded-lg w-64 mx-auto" to="/archive"
           >Leggi di più nell'archivio
           <Icon icon="heroicons:arrow-right" class="h-4 w-4 ml-2" />
-        </a>
+        </RouterLink>
       </div>
     </div>
   </section>
